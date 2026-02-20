@@ -1,0 +1,85 @@
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--header-footer);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-on-dark);
+}
+
+.logo-wrapper {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.circular-text {
+  width: 100%;
+  height: 100%;
+  animation: rotateText 10s linear infinite;
+}
+
+.circular-text text {
+  fill: var(--text-on-dark);
+  font-weight: 700;
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+/* ---- MUNDO MINIMALISTA FIJO EN EL CENTRO ---- */
+.world-center {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Mantiene el texto girando alrededor sin afectar al mundo */
+.circular-text {
+  transform-origin: 50% 50%;
+}
+
+.airplane-orbit {
+  position: absolute;
+  font-size: 2.5rem;
+  color: var(--text-on-dark);
+  animation: orbitAirplane 3s linear infinite;
+}
+/* ---- MUNDO EN EL CENTRO (NO GIRA) ---- */
+.world-center {
+  position: absolute;
+  font-size: 4rem;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Ajuste fino del texto circular para que deje “respirar” al mundo */
+.circular-text {
+  transform-origin: 50% 50%;
+}
+
+
+.est-text {
+  position: absolute;
+  bottom: -20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  font-size: 0.8rem;
+}
+
+@keyframes rotateText {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes orbitAirplane {
+  from { transform: rotate(0deg) translateX(120px) rotate(90deg); }
+  to   { transform: rotate(360deg) translateX(120px) rotate(90deg); }
+}

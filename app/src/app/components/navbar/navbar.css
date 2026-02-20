@@ -1,0 +1,73 @@
+/* ============================= */
+/*            HEADER             */
+/* ============================= */
+.main-header {
+  background: var(--header-footer);
+  padding: 1.2rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--text-on-dark);
+  cursor: pointer;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--text-on-dark);
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-auth {
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.btn-login {
+  border: 2px solid var(--btn-primary);
+  color: var(--text-on-dark);
+}
+
+.btn-login:hover {
+  background: var(--btn-primary);
+}
+
+.btn-register {
+  background: var(--btn-primary);
+  color: var(--text-on-dark);
+  border: 2px solid var(--btn-primary);
+}
