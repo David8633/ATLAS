@@ -1,40 +1,68 @@
-.content-spacing { padding: 80px 0; }
+/* ============================= */
+/* ESPACIADO GENERAL */
+/* ============================= */
+
+.content-spacing {
+  padding: clamp(60px, 8vw, 100px) 0;
+}
+
+/* ============================= */
+/* HEADER SECCIÓN */
+/* ============================= */
 
 .section-header {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
 
 .section-title {
-  font-size: 2.2rem;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
   color: var(--header-footer);
-  font-weight: 700;
-  margin-bottom: 10px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
 }
 
 .section-subtitle {
   color: var(--icon-dark);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
+  opacity: 0.85;
 }
+
+/* ============================= */
+/* GRID */
+/* ============================= */
 
 .grid-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 48px;
 }
+
+/* ============================= */
+/* CARD */
+/* ============================= */
 
 .card-premium {
   background: var(--card-bg);
-  border-radius: 20px;
+  border-radius: 22px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.35s cubic-bezier(.21,.9,.33,1),
+              box-shadow 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
 }
 
 .card-premium:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(14, 0, 206, 0.25);
+  transform: translateY(-12px);
+  box-shadow: 0 30px 60px rgba(14, 0, 206, 0.22);
 }
+
+/* ============================= */
+/* IMAGEN */
+/* ============================= */
 
 .card-image-wrapper {
   position: relative;
@@ -46,29 +74,47 @@
   height: 100%;
   background-size: cover;
   background-position: center;
-  transition: transform 0.6s ease;
+  transition: transform 0.8s cubic-bezier(.2,.8,.2,1);
 }
 
 .card-premium:hover .card-img {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
+
+/* Degradado sutil para legibilidad */
+.card-image-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.35));
+  pointer-events: none;
+}
+
+/* ============================= */
+/* BADGE */
+/* ============================= */
 
 .card-badge {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  background: rgba(255,255,255,0.9);
-  padding: 6px 16px;
+  top: 18px;
+  right: 18px;
+  background: rgba(255,255,255,0.95);
+  padding: 6px 18px;
   border-radius: 50px;
-  font-weight: 700;
-  font-size: 0.75rem;
+  font-weight: 800;
+  font-size: 0.7rem;
   color: var(--btn-primary);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
+  backdrop-filter: blur(4px);
 }
 
+/* ============================= */
+/* BODY */
+/* ============================= */
+
 .card-body {
-  padding: 30px;
+  padding: 32px;
   color: var(--text-on-dark);
   display: flex;
   flex-direction: column;
@@ -76,54 +122,86 @@
 }
 
 .card-body h3 {
-  font-size: 1.6rem;
-  margin-bottom: 10px;
-  color: var(--text-on-dark);
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  font-weight: 700;
 }
+
+/* ============================= */
+/* RATING */
+/* ============================= */
 
 .rating-box {
   color: #fbbf24;
-  font-size: 1.1rem;
-  margin-bottom: 15px;
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
 }
+
+/* ============================= */
+/* LOCATION */
+/* ============================= */
 
 .card-location {
   color: var(--text-secondary);
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+  opacity: 0.85;
 }
 
+/* ============================= */
+/* FOOTER INFO */
+/* ============================= */
+
 .card-footer-info {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 22px;
+  margin-top: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/* ============================= */
+/* PRECIO */
+/* ============================= */
+
 .card-price strong {
   color: var(--text-on-dark);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 800;
 }
+
+/* ============================= */
+/* BOTÓN */
+/* ============================= */
 
 .btn-view-trip {
   background: var(--text-on-dark);
   color: var(--btn-primary);
-  padding: 10px 22px;
-  border-radius: 10px;
+  padding: 11px 24px;
+  border-radius: 12px;
   text-decoration: none;
   font-weight: 700;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-view-trip:hover {
   background: var(--btn-primary);
   color: var(--text-on-dark);
+  transform: translateY(-2px);
 }
 
-/* Foco accesible AAA */
+/* ============================= */
+/* FOCUS ACCESIBLE */
+/* ============================= */
+
 .btn-view-trip:focus-visible,
 .btn-execute-search:focus-visible {
   outline: 4px solid var(--text-secondary);

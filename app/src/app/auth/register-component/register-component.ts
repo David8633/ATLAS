@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { Account } from "../../pages/account/account";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register-component',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './register-component.html',
   styleUrl: './register-component.css',
 })

@@ -1,17 +1,25 @@
 <header class="main-header" role="banner">
         <div class="container nav-container">
-            <div class="logo" tabindex="0" aria-label="ATLAS - Inicio">ATLAS</div>
+            <a routerLink="/dashboard" ><div class="logo" tabindex="0" aria-label="ATLAS - Inicio">ATLAS</div></a>
             <nav aria-label="Menú principal">
                 <ul class="nav-links">
-                    <li><a href="#" class="active" aria-current="page">Inicio</a></li>
-                    <li><a href="#">Vuelos</a></li>
-                    <li><a href="#">Hoteles</a></li>
-                    <li><a href="#">Destinos</a></li>
+                    <li><a routerLink="/lodgings" routerLinkActive="active">Hospedaje</a></li>
+                    <li><a routerLink="/destinations" routerLinkActive="active">Destinos</a></li>
+                    <li><a routerLink="/books" routerLinkActive="active">Reservas</a></li>
+                    @if(token){
+                        <li><a routerLink="/favorites">Favoritos</a></li>
+                    }
                 </ul>
             </nav>
             <div class="auth-buttons">
-                <a href="#" class="btn-auth btn-login" aria-label="Log in - Iniciar sesión">LOG IN</a>
-                <a href="#" class="btn-auth btn-register" aria-label="Register - Registrarse">REGISTER</a>
+                @if(token){
+                    <a routerLink="/account" class="round-link">
+                        <i class="bi bi-person-circle"></i>
+                    </a>    
+                }@else {
+                    <a routerLink="/auth/login" class="btn-auth btn-login" aria-label="Log in - Iniciar sesión">LOG IN</a>
+                    <a routerLink="/auth/register" class="btn-auth btn-register" aria-label="Register - Registrarse">REGISTER</a>
+                }   
             </div>
         </div>
     </header>
