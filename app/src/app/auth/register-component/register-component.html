@@ -16,36 +16,51 @@
     <div class="glass-box">
       <h2>REGISTER</h2>
 
-      <form>
+      <form [formGroup]="myForm">
         <!-- Nombre -->
         <div class="input-group-custom">
           <i class="bi bi-person"></i>
-          <input type="text" placeholder="Nombre completo" required />
+          <input type="text" placeholder="Nombre completo" required formControlName="name"/>
         </div>
+        @if(isInvalidField('name')){
+          <p class="text-error">{{getErrorField('name')}}</p>
+        }
 
         <!-- Usuario -->
         <div class="input-group-custom">
           <i class="bi bi-person-badge"></i>
-          <input type="text" placeholder="Usuario" required />
+          <input type="text" placeholder="Usuario" required formControlName="username"/>
         </div>
+        @if(isInvalidField('username')){
+          <p class="text-error">{{getErrorField('username')}}</p>
+        }
 
         <!-- Email -->
         <div class="input-group-custom">
           <i class="bi bi-envelope"></i>
-          <input type="email" placeholder="Email" required />
+          <input type="email" placeholder="Email" required formControlName="email"/>
         </div>
+        @if(isInvalidField('email')){
+          <p class="text-error">{{getErrorField('email')}}</p>
+        }
 
         <!-- Contraseña -->
         <div class="input-group-custom">
           <i class="bi bi-lock"></i>
-          <input type="password" placeholder="Contraseña" required />
+          <input type="password" placeholder="Contraseña" required formControlName="password"/>
         </div>
+        @if(isInvalidField('password')){
+          <p class="text-error">{{getErrorField('password')}}</p>
+        }
 
         <!-- Confirmar contraseña -->
         <div class="input-group-custom">
           <i class="bi bi-shield-lock"></i>
-          <input type="password" placeholder="Confirmar contraseña" required />
+          <input type="password" placeholder="Confirmar contraseña" required formControlName="retryPassword"/>
         </div>
+        @if(isInvalidField('retryPassword')){
+          <p class="text-error">{{getErrorField('retryPassword')}}</p>
+        }
 
         <p>
           ¿Ya tienes cuenta?

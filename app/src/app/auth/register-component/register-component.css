@@ -133,3 +133,32 @@ p a:hover {
 .btn-volver:hover {
     background: rgba(255, 255, 255, 0.2);
 }
+
+/* Mejora para los mensajes de error */
+.text-error {
+    color: #ff6b6b; /* Un tono de rojo más suave y legible sobre fondo oscuro */
+    font-size: 0.75rem;
+    margin-top: -15px; 
+    margin-bottom: 10px;
+    padding-left: 40px; /* Alineado con el placeholder */
+    text-align: left;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mejora los inputs para que no se sientan "planos" */
+.input-group-custom input:focus {
+    background: rgba(255, 255, 255, 0.1); /* Ligero cambio de tono al enfocar */
+    border-bottom: 2px solid #00d2ff;
+}
+
+/* Ajuste del botón de registro para darle más protagonismo */
+.btn-acceder {
+    background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+    letter-spacing: 1px;
+    font-weight: 600;
+}
