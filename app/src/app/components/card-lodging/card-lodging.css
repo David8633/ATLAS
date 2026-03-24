@@ -1,5 +1,5 @@
 /* ============================= */
-/* ESPACIADO GENERAL */
+/* VARIABLES Y GENERAL           */
 /* ============================= */
 
 .content-spacing {
@@ -7,7 +7,7 @@
 }
 
 /* ============================= */
-/* HEADER SECCIÓN */
+/* HEADER SECCIÓN                */
 /* ============================= */
 
 .section-header {
@@ -30,7 +30,7 @@
 }
 
 /* ============================= */
-/* GRID */
+/* GRID Y ESTRUCTURA DE CARD     */
 /* ============================= */
 
 .grid-section {
@@ -39,17 +39,12 @@
   gap: 48px;
 }
 
-/* ============================= */
-/* CARD */
-/* ============================= */
-
 .card-premium {
   background: var(--card-bg);
   border-radius: 22px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: transform 0.35s cubic-bezier(.21,.9,.33,1),
-              box-shadow 0.35s ease;
+  transition: transform 0.35s cubic-bezier(.21,.9,.33,1), box-shadow 0.35s ease;
   display: flex;
   flex-direction: column;
   will-change: transform;
@@ -61,7 +56,7 @@
 }
 
 /* ============================= */
-/* IMAGEN */
+/* CONTENEDOR DE IMAGEN          */
 /* ============================= */
 
 .card-image-wrapper {
@@ -81,7 +76,6 @@
   transform: scale(1.08);
 }
 
-/* Degradado sutil para legibilidad */
 .card-image-wrapper::after {
   content: "";
   position: absolute;
@@ -89,10 +83,6 @@
   background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.35));
   pointer-events: none;
 }
-
-/* ============================= */
-/* BADGE */
-/* ============================= */
 
 .card-badge {
   position: absolute;
@@ -107,10 +97,11 @@
   text-transform: uppercase;
   letter-spacing: 1.2px;
   backdrop-filter: blur(4px);
+  z-index: 1;
 }
 
 /* ============================= */
-/* BODY */
+/* CONTENIDO (BODY)              */
 /* ============================= */
 
 .card-body {
@@ -127,20 +118,12 @@
   font-weight: 700;
 }
 
-/* ============================= */
-/* RATING */
-/* ============================= */
-
 .rating-box {
   color: #fbbf24;
   font-size: 1.05rem;
   margin-bottom: 18px;
   letter-spacing: 1px;
 }
-
-/* ============================= */
-/* LOCATION */
-/* ============================= */
 
 .card-location {
   color: var(--text-secondary);
@@ -152,8 +135,13 @@
   opacity: 0.85;
 }
 
+.card-description {
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
 /* ============================= */
-/* FOOTER INFO */
+/* FOOTER Y ACCIONES             */
 /* ============================= */
 
 .card-footer-info {
@@ -165,20 +153,7 @@
   align-items: center;
 }
 
-/* ============================= */
-/* PRECIO */
-/* ============================= */
-
-.card-price strong {
-  color: var(--text-on-dark);
-  font-size: 1.2rem;
-  font-weight: 800;
-}
-
-/* ============================= */
-/* BOTÓN */
-/* ============================= */
-
+/* Botón Ver Detalles */
 .btn-view-trip {
   background: var(--text-on-dark);
   color: var(--btn-primary);
@@ -187,9 +162,8 @@
   text-decoration: none;
   font-weight: 700;
   transition: all 0.3s ease;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .btn-view-trip:hover {
@@ -198,12 +172,37 @@
   transform: translateY(-2px);
 }
 
-/* ============================= */
-/* FOCUS ACCESIBLE */
-/* ============================= */
+/* Botón Corazón (Favoritos) */
+.card-footer-info button {
+  background: transparent;
+  border: none;
+  color: var(--text-on-dark);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 8px; /* Área de clic más amplia */
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease, color 0.2s ease;
+  outline: none;
+}
 
+.card-footer-info button:hover {
+  transform: scale(1.2);
+}
+
+.card-footer-info button .bi-heart-fill {
+  color: #ff4d4d; 
+  filter: drop-shadow(0 0 5px rgba(255, 77, 77, 0.3));
+}
+
+.card-footer-info button:hover .bi-heart {
+  color: #ff4d4d;
+}
+
+/* Foco accesible unificado */
 .btn-view-trip:focus-visible,
-.btn-execute-search:focus-visible {
-  outline: 4px solid var(--text-secondary);
+.card-footer-info button:focus-visible {
+  outline: 3px solid var(--text-secondary);
   outline-offset: 4px;
+  border-radius: 8px;
 }

@@ -1,0 +1,39 @@
+<div class="account-settings">
+  <div class="cards-grid">
+    @for (item of allFavourites(); track item.id) {
+      <div class="panel favorite-card">
+        <div class="favorite-content">
+          <div>
+            <img
+              class="favorite-image"
+              [src]="'https://picsum.photos/seed/' + item.id + '/120/120'"
+              alt=""
+            />
+          </div>
+          <div class="favorite-info">
+            <span class="label">LUGAR</span>
+            <p class="value">{{ item.tipo }}, {{ item.direccion }}</p>
+            <span class="label">ESTRELLAS</span>
+            <div class="rating-box">
+              @for (star of [1, 2, 3, 4, 5]; track star) {
+                <i
+                  class="bi" 
+                  [class.bi-star-fill]="star <= item.calificacion"
+                  [class.bi-star]="star > item.calificacion"
+                ></i>
+              }
+            </div>
+          </div>
+        </div>
+        <div class="favorite-actions">
+          <button class="btn-secondary" [routerLink]="['/details', item.id]">VER DETALLES</button>
+          <button class="btn-outline-danger" (click)="remove(item.id)">ELIMINAR DE FAV</button>
+        </div>
+      </div>
+    } @empty {
+      <div class="panel favorite-card">
+        <p class="value">NO HAY FAVORITOS TODAVÍA, AÑÁDELOS DÁNDOLE AL CORAZÓN.</p>
+      </div>
+    }
+  </div>
+</div>

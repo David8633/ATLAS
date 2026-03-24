@@ -28,9 +28,9 @@ export const ROUTES_LAYOUT: Routes = [
                 loadComponent: () => import('./../../../pages/details/details').then(t => t.Details) 
             },
             { 
-                path: 'favorites', 
+                path: 'favourites', 
                 canActivate: [authGuardGuard], 
-                loadComponent: () => import('./../../../pages/favorites/favorites').then(t => t.Favorites) 
+                loadComponent: () => import('../../../pages/favourites/favourites').then(t => t.Favourites) 
             }
     ]}
 ];

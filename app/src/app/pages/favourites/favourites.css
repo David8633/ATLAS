@@ -1,0 +1,114 @@
+/* Contenedor principal: Ahora con el fondo azul de tu imagen original */
+.account-settings {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-top: 10px;
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Cuadrícula para organizar las cartas */
+.cards-grid {
+    display: flex;
+    flex-direction: column; /* Una debajo de otra como en tu imagen */
+    gap: 20px;
+    width: 100%;
+    max-width: 700px;
+}
+
+/* La Carta (Basada en tu clase .panel) */
+.favorite-card {
+    background: white; /* Carta blanca */
+    border-radius: 15px;
+    padding: 25px;
+    background-color:  #314050;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: transform 0.2s ease;
+}
+
+.favorite-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Layout interno de la carta */
+.favorite-content {
+    display: flex;
+    gap: 20px;
+}
+
+.favorite-image {
+    width: 110px;
+    height: 110px;
+    background: #e2e8f0; /* Gris suave */
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.favorite-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Estilos de texto usando tus colores previos */
+.label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #6b7a90; /* Tu color de h3 */
+    letter-spacing: 1px;
+}
+
+.value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fafcff; /* Tu color de h2 */
+    margin: 4px 0 12px 0;
+}
+
+.stars {
+    color: #3b82f6; /* Tu azul primario */
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* Botones inferiores */
+.favorite-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.btn-secondary {
+    flex: 1;
+    background: #f1f5f9;
+    color: #475569;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.btn-outline-danger {
+    flex: 1;
+    background: transparent;
+    color: #ef4444;
+    border: 1px solid #fca5a5;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-outline-danger:hover {
+    background: #fef2f2;
+    border-color: #ef4444;
+}

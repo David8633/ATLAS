@@ -1,43 +1,87 @@
-<section class="place-card">
+<main class="page-container">
+  @if (detailsId) {
+    <section class="main-content main-card">
+      <div class="place-image">
+        <img
+          class="detail-imagen"
+          [src]="'https://picsum.photos/id/' + (detailsId.id_destino || 1) + '/800/400'"
+          [alt]="detailsId.nombre"
+        />
+      </div>
 
-    <!-- Imagen + título -->
-    <div class="place-left">
-        <div class="place-image"></div>
-
-        <div class="place-header">
-            <h2>NOMBRE LUGAR</h2>
-            <div class="stars">★★★★★</div>
-        </div>
-    </div>
-
-    <!-- Características + Reglamentos -->
-    <div class="place-right">
-
-        <div class="box">
-            <h3>CARACTERISTICAS</h3>
-            <ul>
-                <li>CARACTERISTICA</li>
-                <li>CARACTERISTICA</li>
-                <li>CARACTERISTICA</li>
-                <li>CARACTERISTICA</li>
-            </ul>
-        </div>
-
-        <div class="box">
-            <h3>REGLAMENTOS</h3>
-            <ul>
-                <li>NO FUMAR</li>
-                <li>NO FUMAR</li>
-                <li>NO FUMAR</li>
-                <li>NO FUMAR</li>
-            </ul>
+      <div class="card-inner-content">
+        <div class="place-header-section">
+          <h2>{{ detailsId.nombre }}</h2>
+          <span class="badge">{{ detailsId.tipo }}</span>
+          <div class="stars">
+            @for (star of [1, 2, 3, 4, 5]; track star) {
+              <i class="bi"
+                [class.bi-star-fill]="star <= detailsId.calificacion"
+                [class.bi-star]="star > detailsId.calificacion">
+              </i>
+            }
+          </div>
         </div>
 
-    </div>
+        <hr class="separator" />
 
-    <!-- Caja inferior -->
-    <div class="place-bottom">
-        <h3>LUGAR</h3>
-    </div>
+        <div class="description-section">
+          <h3>DESCRIPCIÓN</h3>
+          <p>{{ detailsId.descripcion }}</p>
+        </div>
+      </div>
+    </section>
 
-</section>
+    <aside class="opinions-aside">
+      
+      <div class="opinions-top-group">
+        <div class="aside-header">
+          <h3>OPINIONES</h3>
+          <span class="count-badge">{{ allOpinionsId().length }}</span>
+        </div>
+
+        <div class="scroll-container">
+          @if (allOpinionsId().length > 0) {
+            @for (op of allOpinionsId(); track op.id_alojamiento) {
+              <div class="opinion-card">
+                <div class="card-top">
+                  <div class="user-avatar">
+                    {{ getNameWithOpinionId(op.id_usuario).substring(0,1).toUpperCase() }}
+                  </div>
+                  <div class="user-info">
+                    <strong>{{ getNameWithOpinionId(op.id_usuario) }}</strong>
+                    <small>{{ op.fecha_publicacion }}</small>
+                  </div>
+                  <div class="card-rating">
+                    {{ op.calificacion }} <i class="bi bi-star-fill"></i>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <p>{{ op.comentarios }}</p>
+                </div>
+              </div>
+            }
+          } @else {
+            <div class="empty-state">
+              <i class="bi bi-chat-dots"></i>
+              <p>Aún no hay opiniones.</p>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="location-section-aside">
+        <h3>UBICACIÓN</h3>
+        <div class="location-info">
+          <i class="bi bi-geo-alt-fill"></i> {{ detailsId.direccion }}
+        </div>
+        <div id="map"></div>
+      </div>
+
+    </aside>
+  } @else {
+    <div class="loading-container">
+      <h2 class="error">Cargando información del alojamiento...</h2>
+    </div>
+  }
+</main>
