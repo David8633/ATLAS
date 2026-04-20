@@ -1,3 +1,5 @@
+import { ɵHttpInterceptingHandler } from "@angular/common/http";
+
 export interface AlojamientoType {
   id: string;
   nombre: string;
@@ -33,5 +35,14 @@ export interface UsuarioType {
   nombre: string;
   apellidos: string;
   email: string;
+}
+
+
+export interface LoadingType {
+  id: string;
+  tipo: string;
+  capacidad: number;
+  precio_noche: number | number;
+  id_alojamiento: number;
 }
 
