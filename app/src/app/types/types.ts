@@ -46,3 +46,22 @@ export interface LoadingType {
   id_alojamiento: number;
 }
 
+export interface BookingType {
+  id: string;
+  precio_total: number;
+  estado: string;
+  fecha_reserva: string;
+  fecha_checkin: string;
+  fecha_checkout: string;
+  id_usuario: number;
+  id_habitacion: number;
+}
+
+export interface DestinationType {
+  id: string;
+  nombre_pais: string;
+  nombre_ciudad: string;
+  descripcion: string;
+  latitud: number;
+  longitud: number;
+}

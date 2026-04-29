@@ -1,0 +1,78 @@
+:root {
+  --border-radius: 12px;
+  --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: var(--font-main);
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.grid-layout {
+  display: grid;
+  /* Creamos una rejilla de 6 columnas para manejar los anchos fácilmente */
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15px;
+}
+
+.card {
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--border-radius);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+/* Las dos primeras tarjetas ocupan 3 columnas cada una (50% del ancho) */
+.card:nth-child(1),
+.card:nth-child(2) {
+  grid-column: span 3;
+}
+
+/* Las tres últimas ocupan 2 columnas cada una (33% del ancho) */
+.card:nth-child(n+3) {
+  grid-column: span 2;
+  height: 200px; /* Un poco más bajas como en la imagen */
+}
+
+/* El degradado superior para que el texto resalte */
+.card-content {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 40%);
+  color: white;
+}
+
+.card-content h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Responsive: En móviles, todas ocupan el ancho completo */
+@media (max-width: 768px) {
+  .grid-layout {
+    grid-template-columns: 1fr;
+  }
+  .card:nth-child(n) {
+    grid-column: span 1;
+    height: 200px;
+  }
+}

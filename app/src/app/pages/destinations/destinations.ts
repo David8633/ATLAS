@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { DestinationService } from '../../service/destination-service';
 
 @Component({
   selector: 'app-destinations',
@@ -7,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './destinations.css',
 })
 export class Destinations {
+
+  service = inject(DestinationService);
+
+  allDestinations = this.service.allDestination;
+
+  seeDestination = this.service.getRandomDestinations(6);
+
 
 }

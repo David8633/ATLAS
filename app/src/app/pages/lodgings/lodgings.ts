@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { LoadgingService } from '../../service/loadging-service';
 import { CardLodging } from "../../components/card-lodging/card-lodging";
 import { FavoritesService } from '../../service/favorites-service';
@@ -13,25 +13,22 @@ import { AlojamientoType } from '../../types/types';
   styleUrl: './lodgings.css',
 })
 export class Lodgings {
-
   favoriteService = inject(FavoritesService);
-
   allLoading = inject(LoadgingService);
-
   alojamientoService = inject(AlojamientoService);
-  allAlojamiento = this.alojamientoService.getRandomAlojamiento(10);
-
+  
+  allAlojamiento = this.alojamientoService.allAlojamiento;
   allFavorite = this.favoriteService.favsList;
 
-  findByFavorite(id :string){
+  findByFavorite(id: string) {
     return this.allFavorite().find(fav => fav.id == id) != null;
   }
 
-  findById(id :string){
+  findById(id: string) {
     return this.allLoading.allLoading().find(lod => lod.id == id);
   }
 
-  togle(alojamiento : AlojamientoType){
+  togle(alojamiento: AlojamientoType) {
     this.favoriteService.toggleFav(alojamiento);
   }
 }

@@ -8,6 +8,8 @@ import { FavouriteType, LoadingType } from '../types/types';
 export class LoadgingService {
   
   private httpClient = inject(HttpClient);
+
+
   private _allLoading = signal<LoadingType[]>([]);
   allLoading = this._allLoading.asReadonly();  
 

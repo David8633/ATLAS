@@ -10,7 +10,7 @@ export class FavoritesService {
   get favsList() {
     return this._favsList;
   }
-
+  
   addFavourites(alojamiento: AlojamientoType) {
     const actuales = this._favsList(); // Obtenemos el valor actual
     const existe = actuales.some(item => item.id === alojamiento.id);

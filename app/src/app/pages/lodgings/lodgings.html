@@ -1,7 +1,7 @@
-@if (allAlojamiento) {
+@if (allAlojamiento()) {
   <div class="account-settings">
     <div class="cards-grid">
-      @for (item of allAlojamiento; track item.id) {
+      @for (item of allAlojamiento(); track item.id) {
         <div class="card">
           <button class="btn-heart" 
             [class.is-favourite]="findByFavorite(item.id)"
@@ -55,5 +55,9 @@
         </div>
       }
     </div>
+  </div>
+}@else {
+  <div>
+    <h1>Ahora mismo no puede ver los hospedajes que tenemos, vuelve en unos minutos...</h1>
   </div>
 }

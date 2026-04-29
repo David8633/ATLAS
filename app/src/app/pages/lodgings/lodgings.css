@@ -44,7 +44,7 @@
 
 /* IMAGEN CON ASPECT RATIO */
 .card-image {
-  width: 300px; /* Tamaño fijo horizontal */
+  width: 280px; /* Tamaño fijo horizontal */
   min-height: 100%;
   background-size: cover;
   background-position: center;
