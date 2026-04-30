@@ -19,6 +19,7 @@ export class DestinationService {
     this.httpClient.get<DestinationType[]>("http://localhost:3000/destinos").subscribe({
       next: (destinations) => {
         this._allDestinations.set(destinations);
+        this._allDestinations.set(this.getRandomDestinations(8));
       }
     }
       

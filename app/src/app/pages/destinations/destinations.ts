@@ -13,7 +13,7 @@ export class Destinations {
 
   allDestinations = this.service.allDestination;
 
-  seeDestination = this.service.getRandomDestinations(6);
+  
 
 
 }
