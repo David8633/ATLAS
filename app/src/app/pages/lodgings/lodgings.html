@@ -1,8 +1,25 @@
 @if (allAlojamiento()) {
+
+  <h1 class="title">¡Hay {{ allAlojamientoFiltered().length }} alojamientos!</h1>
+
+  <!-- 🔥 Buscador reactivo -->
+ <div class="search-container">
+    <input 
+      type="text" 
+      placeholder="Buscar alojamiento..." 
+      [(ngModel)]="searchTerm"
+        (ngModelChange)="searchTerm.set($event)"
+    />
+    <i c lass="bi bi-search"></i>
+  </div>
+
   <div class="account-settings">
     <div class="cards-grid">
-      @for (item of allAlojamiento(); track item.id) {
+
+      @for (item of allAlojamientoFiltered(); track item.id) {
+
         <div class="card">
+
           <button class="btn-heart" 
             [class.is-favourite]="findByFavorite(item.id)"
             (click)="togle(item)">
@@ -52,10 +69,14 @@
               </div>
             </div>
           </div>
+
         </div>
+
       }
+
     </div>
   </div>
+
 }@else {
   <div>
     <h1>Ahora mismo no puede ver los hospedajes que tenemos, vuelve en unos minutos...</h1>

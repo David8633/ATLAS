@@ -3,11 +3,11 @@
     font-size: 0.9rem;
     font-weight: 700;
     margin-top: 10px;
-    min-height: 100vh;
     padding: 40px 20px;
     display: flex;
     justify-content: center;
 }
+
 
 /* Cuadrícula para organizar las cartas */
 .cards-grid {

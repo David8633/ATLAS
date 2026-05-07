@@ -1,3 +1,6 @@
+/* ===========================
+   ESTILO GENERAL
+=========================== */
 body {
     margin: 0;
     padding: 0;
@@ -9,23 +12,23 @@ body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-/* El "Cristal" con Flexbox para control de posición */
+/* ===========================
+   GLASS BOX
+=========================== */
 .glass-box {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 40px; /* Reducido un poco para dar más aire */
+    padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
     width: 450px;
     text-align: center;
     color: white;
-    box-sizing: border-box;
-
-    /* ESTO EMPUJA LOS BOTONES */
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 h2 { 
@@ -39,21 +42,22 @@ p {
     opacity: 0.8;
 }
 
-p a{
+p a {
     text-decoration: none;
     color: #7b6cff;
 }
 
-p a:hover{
-    color:rgb(13, 18, 87) ;
-    text-decoration: solid;
+p a:hover {
+    color: rgb(13, 18, 87);
 }
 
-/* Contenedor del input y el icono */
+/* ===========================
+   INPUT GROUP
+=========================== */
 .input-group-custom {
     position: relative;
     width: 100%;
-    margin-bottom: 25px;
+    margin-bottom: 40px; /* deja espacio para el error */
 }
 
 .input-group-custom i {
@@ -86,19 +90,44 @@ p a:hover{
     color: #00d2ff;
 }
 
-/* GRUPO DE BOTONES ABAJO */
+/* ===========================
+   ERROR VISUAL
+=========================== */
+.input-group-custom.invalid input {
+    border-bottom: 2px solid #ff4d4d;
+}
+
+.input-group-custom.invalid i {
+    color: #ff4d4d;
+}
+
+.input-group-custom small {
+    position: absolute;
+    bottom: -20px;
+    left: 5px;
+    font-size: 0.8rem;
+    color: #ff4d4d;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: 0.2s ease;
+}
+
+/* Cuando hay error, aparece suavemente */
+.input-group-custom.invalid small {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===========================
+   BOTONES
+=========================== */
 .button-group {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     gap: 15px;
     width: 100%;
-    
-    /* MAGIA: Empuja todo el bloque al final de la caja */
-    margin-top: auto; 
-    
-    box-sizing: border-box;
+    margin-top: auto;
 }
 
 .btn-acceder, .btn-volver {
@@ -112,7 +141,6 @@ p a:hover{
     font-size: 14px;
     text-transform: uppercase;
     transition: all 0.3s ease;
-    text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,3 +1,6 @@
+/* ===========================
+   ESTILO GENERAL
+=========================== */
 body {
     margin: 0;
     padding: 0;
@@ -9,7 +12,9 @@ body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-/* Caja cristal */
+/* ===========================
+   GLASS BOX
+=========================== */
 .glass-box {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
@@ -17,31 +22,24 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    width: 100%;
-    max-width: 450px;
-    min-height: 600px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    width: 450px;
     text-align: center;
     color: white;
-    box-sizing: border-box;
-
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
-h2 {
-    margin-bottom: 30px;
-    font-weight: 300;
-    letter-spacing: 2px;
-    background: white;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+h2 { 
+    margin-bottom: 30px; 
+    font-weight: 300; 
+    letter-spacing: 2px; 
 }
 
 p {
     font-size: 15px;
     opacity: 0.8;
-    margin-top: 10px;
 }
 
 p a {
@@ -50,14 +48,16 @@ p a {
 }
 
 p a:hover {
-    color:rgb(13, 18, 87) ;
+    color: rgb(13, 18, 87);
 }
 
-/* Inputs */
+/* ===========================
+   INPUT GROUP
+=========================== */
 .input-group-custom {
     position: relative;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 40px; /* espacio reservado para el error */
 }
 
 .input-group-custom i {
@@ -90,9 +90,44 @@ p a:hover {
     color: #00d2ff;
 }
 
-/* Botones */
+/* ===========================
+   ERROR VISUAL (UNIFICADO)
+=========================== */
+.input-group-custom.invalid input {
+    border-bottom: 2px solid #ff4d4d !important;
+    background: rgba(255, 0, 0, 0.08);
+}
+
+.input-group-custom.invalid i {
+    color: #ff4d4d !important;
+}
+
+.input-group-custom small,
+.text-error {
+    position: absolute;
+    bottom: -20px;
+    left: 5px;
+    font-size: 0.8rem;
+    color: #ff4d4d;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: 0.2s ease;
+}
+
+/* Mostrar error */
+.input-group-custom.invalid small,
+.input-group-custom.invalid + .text-error {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===========================
+   BOTONES
+=========================== */
 .button-group {
     display: flex;
+    justify-content: space-between;
     gap: 15px;
     width: 100%;
     margin-top: auto;
@@ -109,7 +144,6 @@ p a:hover {
     font-size: 14px;
     text-transform: uppercase;
     transition: all 0.3s ease;
-    text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,33 +166,4 @@ p a:hover {
 
 .btn-volver:hover {
     background: rgba(255, 255, 255, 0.2);
-}
-
-/* Mejora para los mensajes de error */
-.text-error {
-    color: #ff6b6b; /* Un tono de rojo más suave y legible sobre fondo oscuro */
-    font-size: 0.75rem;
-    margin-top: -15px; 
-    margin-bottom: 10px;
-    padding-left: 40px; /* Alineado con el placeholder */
-    text-align: left;
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-5px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Mejora los inputs para que no se sientan "planos" */
-.input-group-custom input:focus {
-    background: rgba(255, 255, 255, 0.1); /* Ligero cambio de tono al enfocar */
-    border-bottom: 2px solid #00d2ff;
-}
-
-/* Ajuste del botón de registro para darle más protagonismo */
-.btn-acceder {
-    background: linear-gradient(135deg, #3a7bd5, #00d2ff);
-    letter-spacing: 1px;
-    font-weight: 600;
 }

@@ -8,7 +8,19 @@ import { BookingType } from '../types/types';
 export class BookingService {
   
   private httpClient = inject(HttpClient);
-  private allBooking = signal<BookingType[]>([]);
+  private _allBooking = signal<BookingType[]>([]);
+  allBooking = this._allBooking.asReadonly();
+  private url = "http://localhost:3000/reservas";
 
+  constructor(){
+    this.getAllBooking()
+  }
 
+  getAllBooking(){
+    this.httpClient.get<BookingType[]>(this.url).subscribe({
+      next: (books) => {
+        this._allBooking.set(books);
+      }
+    })
+  }
 }

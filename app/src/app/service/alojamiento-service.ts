@@ -38,9 +38,10 @@ export class AlojamientoService {
       .slice(0, countNumber);
   }
 
-  findById(id: string): AlojamientoType {
+  findById(id: string | number): AlojamientoType {
+    const idStr = String(id); 
     const allAlojamientos = this._allAlojamiento;
-    return allAlojamientos().filter(alojamiento => alojamiento.id == id)[0];
+    return allAlojamientos().filter(alojamiento => alojamiento.id == idStr)[0];
   }
 
 }

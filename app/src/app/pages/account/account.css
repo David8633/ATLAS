@@ -1,4 +1,6 @@
-/* Contenedor general */
+/* ============================
+   CONTENEDOR GENERAL
+============================ */
 .account-settings {
     display: flex;
     gap: 40px;
@@ -6,9 +8,12 @@
     padding: 40px;
     background: rgb(232, 241, 255);
     flex-wrap: wrap;
+   /* min-height: calc(100vh - 80px); /* deja espacio para el footer */
 }
 
-/* Paneles */
+/* ============================
+   PANELES
+============================ */
 .panel {
     background: white;
     padding: 30px;
@@ -20,7 +25,9 @@
     gap: 15px;
 }
 
-/* Avatar */
+/* ============================
+   AVATAR
+============================ */
 .avatar {
     width: 120px;
     height: 120px;
@@ -29,7 +36,9 @@
     margin: 0 auto 20px auto;
 }
 
-/* Títulos */
+/* ============================
+   TITULOS
+============================ */
 .panel h2 {
     font-size: 1.4rem;
     margin-bottom: 10px;
@@ -43,7 +52,9 @@
     margin-top: 10px;
 }
 
-/* Inputs */
+/* ============================
+   INPUTS
+============================ */
 .panel input {
     width: 100%;
     padding: 12px 15px;
@@ -59,7 +70,9 @@
     box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
 }
 
-/* Botón */
+/* ============================
+   BOTÓN PRINCIPAL
+============================ */
 .btn-primary {
     background: #3b82f6;
     color: white;
@@ -76,8 +89,9 @@
     background: #1e40af;
 }
 
-
-/* Barra superior horizontal */
+/* ============================
+   BARRA SUPERIOR
+============================ */
 .account-header {
     display: flex;
     justify-content: space-between;
@@ -103,7 +117,9 @@
     border-radius: 50%;
 }
 
-/* Botón estilizado horizontal */
+/* ============================
+   BOTÓN LOGOUT
+============================ */
 .btn-logout-horizontal {
     display: flex;
     align-items: center;
@@ -123,3 +139,31 @@
     border-color: #ef4444;
     transform: translateY(-1px);
 }
+
+
+/* ============================
+   BOTÓN OJO
+============================ */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 45px; /* espacio para el icono */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #6b7280;
+  padding: 0;
+}
+

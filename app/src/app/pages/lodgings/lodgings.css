@@ -1,4 +1,6 @@
-/* PALETA DE COLORES PROFESIONAL */
+/* ===========================
+   PALETA DE COLORES PROFESIONAL
+=========================== */
 :root {
   --primary: #006ce4; /* Azul Booking moderno */
   --primary-hover: #0056b3;
@@ -11,7 +13,9 @@
   --radius: 12px;
 }
 
-/* CONTENEDOR GENERAL */
+/* ===========================
+   CONTENEDOR GENERAL
+=========================== */
 .account-settings {
   padding: 40px 20px;
   background-color: var(--bg-body);
@@ -26,36 +30,98 @@
   gap: 20px;
 }
 
-/* LA TARJETA (CARD) */
-.card {
+/* ===========================
+            TITULO
+=========================== */
+.title {
+  text-align: center;
+  margin-top: 20px;   /* Baja el título */
+  margin-bottom: 25px; /* Espacio antes del buscador */
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* ===========================
+   BUSCADOR ESTILO BOOKING
+=========================== */
+.search-container {
+  max-width: 1000px;
+  margin: 0 auto 25px auto;
+  position: relative;
   display: flex;
-  background: rgb(255, 255, 255);
-  border-radius: 20px;   
-  border: 1px solid #e7e7e7;
-  overflow: hidden; 
+  align-items: center;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 14px 50px 14px 18px;
+  border-radius: var(--radius);
+  border: 1px solid #d6d6d6;
+  background: #ffffff;
+  font-size: 1rem;
+  color: var(--text-main);
   box-shadow: var(--shadow);
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-container input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 108, 228, 0.2);
+  outline: none;
+}
+
+.search-container i {
+  position: absolute;
+  right: 18px;
+  font-size: 1.2rem;
+  color: var(--primary);
+  pointer-events: none;
+}
+
+/* ===========================
+   TARJETA (CARD)
+=========================== */
+.card {
+  position: relative;
+  display: flex;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #e7e7e7;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* IMAGEN CON ASPECT RATIO */
+/* ===========================
+   IMAGEN
+=========================== */
 .card-image {
-  width: 280px; /* Tamaño fijo horizontal */
-  min-height: 100%;
-  background-size: cover;
-  background-position: center;
+  width: 300px;
+  height: inherit;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: transform 0.5s ease;
+  display: block;
 }
 
-.card:hover .card-image {
-  transform: scale(1.05); /* Efecto zoom sutil al entrar */
+.card:hover .card-image img {
+  transform: scale(1.1);
 }
 
-/* CONTENIDO */
+/* ===========================
+   CONTENIDO
+=========================== */
 .card-content {
   flex: 1;
   padding: 24px;
@@ -72,7 +138,6 @@
   text-transform: capitalize;
 }
 
-/* INFORMACIÓN DETALLADA */
 .card-info {
   font-size: 0.95rem;
   color: var(--text-muted);
@@ -89,20 +154,21 @@
   letter-spacing: 0.5px;
 }
 
-/* PUNTUACIÓN (RATING) */
+/* ===========================
+   RATING
+=========================== */
 .card-rating {
   margin-top: 15px;
   display: flex;
   align-items: center;
   gap: 12px;
-  
 }
 
 .rating-box {
-  background: #003580; /* Azul oscuro corporativo */
+  background: #003580;
   color: white;
   padding: 6px 10px;
-  border-radius: 6px 6px 6px 0; /* Estilo Booking */
+  border-radius: 6px 6px 6px 0;
   font-weight: 700;
   font-size: 1.1rem;
 }
@@ -113,10 +179,12 @@
   color: var(--text-main);
 }
 
-/* ACCIONES Y BOTÓN */
+/* ===========================
+   BOTÓN VER DETALLES
+=========================== */
 .card-actions {
   display: flex;
-  justify-content: flex-end; /* Alineado a la derecha */
+  justify-content: flex-end;
   margin-top: 20px;
 }
 
@@ -129,101 +197,62 @@
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 600;
-  transition: background 0.2s ease, transform 0.1s active;
+  transition: background 0.2s ease, transform 0.1s ease;
 }
 
 .btn-primary:hover {
-  background: rgba(0, 0, 68, 0.503);
+  background: rgba(0, 0, 68, 0.5);
 }
 
 .btn-primary:active {
   transform: scale(0.98);
 }
 
-/* --- ESTILO DE LA TARJETA (REPASO) --- */
-.card {
-  position: relative; /* <--- CRÍTICO para el posicionamiento del corazón */
-  display: flex;
-  background: #ffffff;
-  border-radius: 20px; /* Esquinas redondeadas profesionales */
-  overflow: hidden; /* Corta la imagen y contenido en las esquinas */
-  border: 1px solid #e7e7e7;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-/* --- BOTÓN DE CORAZÓN (FAVORITOS) --- */
+/* ===========================
+   CORAZÓN FAVORITOS
+=========================== */
 .btn-heart {
   position: absolute;
-  top: 15px;      /* Espacio desde arriba */
-  right: 15px;    /* Espacio desde la derecha */
-  z-index: 10;    /* Por encima de la imagen */
-  background: rgba(255, 255, 255, 0.85); /* Fondo blanco sutil */
+  top: 15px;
+  right: 15px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.85);
   border: none;
   width: 40px;
   height: 40px;
-  border-radius: 50%; /* Círculo perfecto */
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
-  outline: none; /* Quita el borde de enfoque por defecto */
 }
 
-/* Estilo del icono SVG dentro del botón */
-.btn-heart svg {
-  width: 22px;
-  height: 22px;
-  color: #555; /* Color del borde por defecto */
-  fill: none;  /* Sin relleno por defecto */
-  transition: color 0.3s ease, fill 0.3s ease, transform 0.3s ease;
-}
-
-/* --- INTERACCIÓN (HOVER) --- */
 .btn-heart:hover {
-  transform: scale(1.1); /* Efecto de aumento sutil */
-  background: #ffffff;
-}
-
-.btn-heart:hover svg {
-  color: #e74c3c; /* Borde rojo al pasar el ratón */
-}
-
-/* --- ESTADO ACTIVO (CUANDO ES FAVORITO) --- */
-/* Esta clase la añade Angular dinámicamente con [class.is-favourite] */
-.btn-heart.is-favourite {
-  background: #ffffff;
-}
-
-.btn-heart.is-favourite svg {
-  color: #e74c3c; /* Borde rojo */
-  fill: #e74c3c;  /* Relleno rojo sólido */
-  animation: heartBeat 0.4s ease-out; /* Animación de "latido" al activar */
-}
-.card-image {
-  width: 300px; /* Ancho fijo para el diseño horizontal */
-  height: inherit; /* Toma la altura de la tarjeta */
-  overflow: hidden; /* Corta lo que sobresalga al hacer zoom */
-}
-
-.card-image img {
-  width: 100%;
-  height: 100%;
-  /* EL TRUCO MÁGICO: Corta la imagen para que encaje sin deformarse */
-  object-fit: cover; 
-  
-  transition: transform 0.5s ease;
-  display: block; /* Quita espacios extra en la base */
-}
-
-/* Efecto Zoom al pasar el ratón sobre la tarjeta */
-.card:hover .card-image img {
   transform: scale(1.1);
+  background: #ffffff;
+}
+
+.btn-heart i {
+  font-size: 1.3rem;
+  color: #555;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-heart:hover i {
+  color: #e74c3c;
+}
+
+.btn-heart.is-favourite i {
+  color: #e74c3c;
+  animation: heartBeat 0.4s ease-out;
+}
+
+/* Animación del corazón */
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.3); }
+  60% { transform: scale(0.9); }
+  100% { transform: scale(1); }
 }

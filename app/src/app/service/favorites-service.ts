@@ -32,20 +32,25 @@ export class FavoritesService {
 
 
 
-  toggleFav(alojamientoFav: AlojamientoType) {
+  toggleFav(alojamientoFav: AlojamientoType) :boolean {
     alojamientoFav.favourites = !alojamientoFav.favourites;
     if (alojamientoFav.favourites) {
       this.addFavourites(alojamientoFav);
+      return true;
     } else {
       this.removeFavorites(alojamientoFav.id);
+      return false;
     }
   }
 
   removeFavorites(id: string) {
+    
     // CORRECCIÓN: Usar .update() para filtrar
     this._favsList.update(favs => favs.filter(item => item.id != id));
 
     // Guardar en LocalStorage llamando a la señal con ()
     localStorage.setItem('favorite', JSON.stringify(this._favsList()));
   }
+
+
 }
