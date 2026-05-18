@@ -1,0 +1,132 @@
+<div class="container">
+
+  <!-- Título -->
+  <h1 class="title">
+    Alojamientos disponibles
+  </h1>
+
+  <!-- Search Engine -->
+<app-search-engine
+  [destination]="destination()"
+  [type]="type()"
+  [checkin]="checkin()"
+  [checkout]="checkout()"
+  [count]="person() "
+
+  (destinationChange)="destination.set($event); onFilterChange()"
+  (typeChange)="type.set($event); onFilterChange()"
+  (checkinChange)="checkin.set($event); onFilterChange()"
+  (checkoutChange)="checkout.set($event); onFilterChange()"
+  (personChange)="person.set($event); onFilterChange()"
+></app-search-engine>
+
+
+
+
+
+  <!-- Limpiar filtros -->
+  @if (hasFilters()) {
+    <div class="clear-filters">
+      <button (click)="clearFilters()" class="btn-clear">
+        <i class="bi bi-x-circle"></i> Limpiar filtros
+      </button>
+    </div>
+  }
+
+  <!-- Loading -->
+  @if (lodgingService.isLoading()) {
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Cargando alojamientos...</p>
+    </div>
+  }
+
+  <!-- Grid de alojamientos -->
+  @if (!lodgingService.isLoading()) {
+    <div class="cards-grid">
+      @for (item of lodgingService.lodgingsSignal(); track item.id) {
+        <div class="card">
+          <div class="card-image">
+            <img [src]="'https://picsum.photos/seed/' + item.id + '/400/300'" 
+                 [alt]="item.name" loading="lazy">
+          </div>
+
+          <div class="card-content">
+            <div class="card-header">
+              <h3>{{ item.name }}</h3>
+
+              <div class="rating">
+                @for (star of [1,2,3,4,5]; track star) {
+                  <i class="bi"
+                     [class.bi-star-fill]="star <= item.rating"
+                     [class.bi-star]="star > item.rating">
+                  </i>
+                }
+                <span class="rating-value">{{ item.rating }}</span>
+              </div>
+            </div>
+
+            <p class="address">
+              <i class="bi bi-geo-alt"></i> {{ item.address }}
+            </p>
+
+            <div class="details-grid">
+              <div class="detail-item">
+                <i class="bi bi-tag"></i>
+                <span><strong>Precio:</strong> {{ item.pricePerNight }} €/noche</span>
+              </div>
+
+              <div class="detail-item">
+                <i class="bi bi-bed"></i>
+                <span><strong>Capacidad:</strong> {{ item.capacity }} habitaciones</span>
+              </div>
+
+              <div class="detail-item">
+                <i class="bi bi-globe"></i>
+                <span><strong>Destino:</strong> {{ item.destinationName }}</span>
+              </div>
+            </div>
+
+            <div class="card-actions">
+              <a [routerLink]="['/details', item.id]" class="btn-details">
+                Ver Detalles <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Paginación -->
+  @if (totalPages() > 1 && !lodgingService.isLoading()) {
+    <div class="pagination">
+      <button (click)="prevPage()" 
+              [disabled]="currentPage() === 0" 
+              class="page-btn">
+        <i class="bi bi-chevron-left"></i> Anterior
+      </button>
+
+      <span class="page-info">
+        Página {{ currentPage() + 1 }} de {{ totalPages() }}
+      </span>
+
+      <button (click)="nextPage()" 
+              [disabled]="currentPage() + 1 >= totalPages()" 
+              class="page-btn">
+        Siguiente <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  }
+
+  <!-- Sin resultados -->
+  @if (!lodgingService.isLoading() && lodgingService.lodgingsSignal().length === 0) {
+    <div class="no-results">
+      <i class="bi bi-search"></i>
+      <h3>No se encontraron alojamientos</h3>
+      <p>Prueba con otros filtros o elimina los criterios de búsqueda.</p>
+      <button (click)="clearFilters()" class="btn-primary">Limpiar filtros</button>
+    </div>
+  }
+
+</div>

@@ -1,0 +1,39 @@
+<div class="container">
+  <h2>Destinos de moda</h2>
+
+  <div class="grid-layout">
+
+    @if (top8Destination().length > 1) {
+
+      @for (item of top8Destination(); track item.id; let i = $index) {
+
+        <a [routerLink]="['/lodgings']"
+           [queryParams]="{ destination: item.countryName }"
+           class="card-link">
+
+          <div class="card"
+               [style.backgroundImage]="'url(https://picsum.photos/seed/' + i + '/400/500)'"
+               [class.large-card]="i < 2"
+               [class.small-card]="i >= 2">
+
+            <div class="card-content">
+              <h3>{{ item.countryName }}</h3>
+            </div>
+
+          </div>
+
+        </a>
+
+      }
+
+    } @else {
+
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>Cargando destinos...</p>
+      </div>
+
+    }
+
+  </div>
+</div>

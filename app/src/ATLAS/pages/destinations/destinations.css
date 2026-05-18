@@ -1,0 +1,79 @@
+/* ===== CONTENEDOR GENERAL ===== */
+.container {
+  padding: 1.5rem 1rem;     /* menos padding vertical */
+  margin: 1.5rem auto;      /* antes 3rem → ahora más arriba */
+  max-width: 1300px;
+}
+
+/* ===== TÍTULO ===== */
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color:var(--text-main);
+  text-align: center;       /* centrado */
+}
+
+/* ===== GRID ===== */
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ===== TARJETA ===== */
+.card {
+  position: relative;
+  height: 300px;              /* tamaño más compacto */
+  border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+}
+
+/* ===== UNIFICAR LARGE Y SMALL ===== */
+.large-card,
+.small-card {
+  height: 300px !important;
+  grid-column: span 1;
+}
+
+/* ===== CONTENIDO ===== */
+.card-content {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.0)
+  );
+  color: white;
+  border-radius: 0 0 16px 16px;
+}
+
+.card-content h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .card {
+    height: 240px;
+  }
+
+  .card-content h3 {
+    font-size: 1.2rem;
+  }
+}

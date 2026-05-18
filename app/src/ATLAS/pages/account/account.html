@@ -1,0 +1,62 @@
+<header class="account-header">
+  <div class="user-info">
+    <div class="mini-avatar"></div>
+    <span
+      >Sesión iniciada como <strong>{{ logedUser?.username }}</strong></span
+    >
+  </div>
+
+  <div class="session-actions">
+    <button (click)="logoutAccount()" class="btn-logout-horizontal">
+      <i class="bi bi-box-arrow-right"></i>
+      CERRAR SESIÓN
+    </button>
+  </div>
+</header>
+
+<section class="account-settings">
+  <!-- PANEL 1: INFORMACIÓN DE LA CUENTA -->
+  <div class="panel">
+    <h2>INFORMACIÓN DE LA CUENTA</h2>
+
+    <div class="info-row">
+      <span class="label">Usuario:</span>
+      <span class="value">{{ logedUser?.firstName }}</span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Username:</span>
+      <span class="value">{{ logedUser?.username }}</span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Email:</span>
+      <span class="value">{{ logedUser?.email }}</span>
+    </div>
+  </div>
+
+  <!-- PANEL 2: CONTACTO Y SOPORTE -->
+  <div class="panel">
+    <h2>CONTACTO Y SOPORTE</h2>
+
+    <div class="info-row">
+      <span class="label">Teléfono de soporte:</span>
+      <span class="value">+34 654 987 321</span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Horario:</span>
+      <span class="value">Lunes a Viernes — 09:00 a 18:00</span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Email soporte:</span>
+      <a
+        href="https://mail.google.com/mail/?view=cm&fs=1&to=soporte@travelapp.com&su=Necesito%20ayuda&body=Hola%2C%20tengo%20una%20consulta"
+        target="_blank"
+      >
+        soporte@travelapp.com
+      </a>
+    </div>
+  </div>
+</section>

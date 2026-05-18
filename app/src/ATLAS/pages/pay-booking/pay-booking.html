@@ -1,0 +1,35 @@
+<div class="payment-container">
+
+  <h1 class="title">Método de Pago</h1>
+
+  <div class="summary-card">
+    <h2>Resumen de la reserva</h2>
+    <p><strong>Alojamiento:</strong> {{ lodgingName }}</p>
+    <p><strong>Entrada:</strong> {{ checkin }}</p>
+    <p><strong>Salida:</strong> {{ checkout }}</p>
+    <p><strong>Noches:</strong> {{ nights }}</p>
+    <p><strong>Total:</strong> {{ totalPrice }} €</p>
+  </div>
+
+  <h2 class="subtitle">Selecciona un método de pago</h2>
+
+  <label class="method">
+    <input type="radio" name="payment" value="Tarjeta" [(ngModel)]="paymentMethod">
+    Tarjeta de crédito
+  </label>
+
+  <label class="method">
+    <input type="radio" name="payment" value="PayPal" [(ngModel)]="paymentMethod">
+    PayPal
+  </label>
+
+  <label class="method">
+    <input type="radio" name="payment" value="Bizum" [(ngModel)]="paymentMethod">
+    Bizum
+  </label>
+
+  <button class="btn-confirm" (click)="payBooking()">
+    Confirmar pago
+  </button>
+
+</div>

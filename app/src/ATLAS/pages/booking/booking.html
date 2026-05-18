@@ -1,0 +1,60 @@
+<div class="reservas-container">
+  <h1 class="title">Mis Reservas</h1>
+
+  @if (bookingService.isLoading()) {
+    <div class="loading">Cargando reservas...</div>
+  } @else if (bookingService.allBookings().length === 0) {
+    <div class="empty-state">
+      <i class="bi bi-calendar-x"></i>
+      <p>No tienes reservas aún</p>
+      <a routerLink="/lodgings" class="btn-primary">Explorar alojamientos</a>
+    </div>
+  } @else {
+    <div class="cards-grid">
+      @for (item of bookingService.allBookings(); track item.id) {
+        <div class="card">
+
+          <div class="card-header">
+            <span class="badge {{ item.status | lowercase }}">
+              {{ item.status }}
+            </span>
+            <span class="booking-id">#{{ item.id }}</span>
+          </div>
+
+          <div class="card-body">
+            <h3 class="lodging-name">{{ item.lodgingName }}</h3>
+            <p class="lodging-address">{{ item.lodgingAddress }}</p>
+            <p class="destination">{{ item.destinationName }}</p>
+
+            <div class="booking-dates">
+              <div class="date">
+                <i class="bi bi-calendar-check"></i>
+                <span>{{ item.checkinDate | date:'dd/MM/yyyy' }}</span>
+              </div>
+              <div class="date">
+                <i class="bi bi-calendar-x"></i>
+                <span>{{ item.checkoutDate | date:'dd/MM/yyyy' }}</span>
+              </div>
+            </div>
+
+            <div class="booking-info">
+              <p><strong>Noches:</strong> {{ item.nights }}</p>
+              <p><strong>Precio total:</strong> {{ item.totalPrice }} €</p>
+
+              @if (item.isPaid) {
+                <p class="paid">
+                  <i class="bi bi-check-circle"></i> Pagado con {{ item.paymentMethod }}
+                </p>
+              }
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <a [routerLink]="['/details', item.lodgingId]" class="btn-details">Ver alojamiento</a>
+          </div>
+
+        </div>
+      }
+    </div>
+  }
+</div>

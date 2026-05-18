@@ -1,0 +1,47 @@
+<section class="container content-spacing">
+
+  @if (top3Lodging()) {
+    <div class="grid-section">
+      @for (lodging of top3Lodging() ; track lodging.id) {
+        <article class="card-premium" tabindex="0">
+          <div class="card-image-wrapper">
+            <div class="card-img">
+              <img
+                [src]="'https://picsum.photos/seed/' + lodging.id + '/800/600'"
+                [alt]="'Imagen de ' + lodging.name"
+              />
+            </div>
+                    </div>
+
+          <div class="card-body">
+            <h3>{{ lodging.name }}</h3>
+
+            <div class="rating-box">
+              @for (star of [1, 2, 3, 4, 5]; track star) {
+                <i class="bi" 
+                  [class.bi-star-fill]="star <= (lodging.rating )" 
+                  [class.bi-star]="star > (lodging.rating )">
+                </i>
+              }
+            </div>
+            
+            <p class="card-location"><i class="bi bi-geo-alt"></i> {{ lodging.address }}</p>
+
+            <p class="card-description">{{ lodging.description  }}</p>
+
+            <div class="card-footer-info">
+              <a [routerLink]="['/details', lodging.id]" class="btn-view-trip">
+                Ver Detalles
+              </a>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  } @else {
+    <div class="loading-container">
+      <app-loading></app-loading>
+      <p>Buscando las mejores opciones para ti...</p>
+    </div>
+  }
+</section>

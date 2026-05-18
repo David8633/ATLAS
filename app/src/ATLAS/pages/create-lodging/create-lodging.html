@@ -1,0 +1,65 @@
+<div class="container">
+  <h2>Crear Nuevo Alojamiento</h2>
+  
+  <form (ngSubmit)="onSubmit()" class="create-form">
+    <div class="form-group">
+      <label>Nombre *</label>
+      <input type="text" [(ngModel)]="formData.name" name="name" required>
+    </div>
+
+    <div class="form-group">
+      <label>Dirección *</label>
+      <input type="text" [(ngModel)]="formData.address" name="address" required>
+    </div>
+
+    <div class="form-group">
+      <label>Tipo *</label>
+      <select [(ngModel)]="formData.type" name="type" required>
+        <option value="">Selecciona...</option>
+        @for (type of types; track type) {
+          <option [value]="type">{{ type }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Capacidad *</label>
+      <input type="number" [(ngModel)]="formData.capacity" name="capacity" min="1" required>
+    </div>
+
+    <div class="form-group">
+      <label>Precio por noche (€) *</label>
+      <input type="number" step="0.01" [(ngModel)]="formData.pricePerNight" name="pricePerNight" min="0" required>
+    </div>
+
+    <div class="form-group">
+      <label>Destino *</label>
+      <select [(ngModel)]="formData.destinationId" name="destinationId" required>
+        <option [value]="null">Selecciona...</option>
+        @for (dest of destinationService.allDestinations(); track dest.id) {
+          <option [value]="dest.id">{{ dest.cityName }}, {{ dest.countryName }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Descripción</label>
+      <textarea [(ngModel)]="formData.description" name="description" rows="4"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Latitud</label>
+      <input type="number" step="any" [(ngModel)]="formData.latitude" name="latitude">
+    </div>
+
+    <div class="form-group">
+      <label>Longitud</label>
+      <input type="number" step="any" [(ngModel)]="formData.longitude" name="longitude">
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-submit">Crear Alojamiento</button>
+      <button type="button" class="btn-cancel" routerLink="/lodgings">Cancelar</button>
+    </div>
+  </form>
+</div>

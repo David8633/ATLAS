@@ -1,0 +1,26 @@
+.hero-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-bg-image {
+  width: 100%;
+  height: 300px;
+  background-image: url('https://picsum.photos/1600/500');
+  background-size: cover;
+  background-position: center;
+}
+
+/* TÍTULO FLOTANTE */
+.hero-title {
+  position: absolute;
+  top: 50%;               /* Centrado vertical */
+  left: 50%;              /* Centrado horizontal */
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.6);
+  z-index: 10;            /* Encima de la imagen */
+  pointer-events: none;   /* No bloquea clics */
+}

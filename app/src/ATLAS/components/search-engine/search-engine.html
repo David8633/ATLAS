@@ -1,0 +1,91 @@
+<section class="hero-search" aria-label="Buscador de viajes">
+  <div class="container relative-content">
+    <div class="search-bar-premium" role="search">
+
+      <!-- FILA SUPERIOR -->
+      <div class="search-top-row">
+
+        <!-- TIPO -->
+        <div class="category-select-wrapper">
+          <i class="bi bi-houses-fill select-icon"></i>
+
+          <select 
+            [ngModel]="_type()"
+            (ngModelChange)="onTypeChange($event)"
+          >
+            <option value="">Tipo</option>
+
+            @for (t of tipos; track t) {
+              <option [value]="t">{{ t }}</option>
+            }
+          </select>
+        </div>
+
+        <!-- CHECK-IN -->
+        <div class="category-select-wrapper">
+          <i class="bi bi-calendar-fill select-icon"></i>
+
+          <input
+            type="date"
+            [ngModel]="_checkin()"
+            (ngModelChange)="onCheckinChange($event)"
+          />
+        </div>
+
+        <!-- CHECK-OUT -->
+        <div class="category-select-wrapper">
+          <i class="bi bi-calendar-fill select-icon"></i>
+
+          <input
+            type="date"
+            [ngModel]="_checkout()"
+            (ngModelChange)="onCheckoutChange($event)"
+          />
+        </div>
+
+      </div>
+
+      <!-- FILA INFERIOR -->
+      <div class="search-bottom-row">
+
+        <!-- PERSONAS -->
+        <div class="category-select-wrapper people-wrapper">
+          <i class="bi bi-people-fill select-icon"></i>
+
+          <input
+            type="number"
+            min="1"
+            max="10"
+            placeholder="Pers"
+            [ngModel]="_count()"
+            (ngModelChange)="onPersonChange($event)"
+          />
+        </div>
+
+        <!-- DESTINO -->
+        <div class="search-input-wrapper search-wide">
+          <i class="bi bi-search search-icon-inner"></i>
+
+          <input
+            type="text"
+            placeholder="¿A dónde quieres ir?"
+            autocomplete="off"
+            [ngModel]="_destination()"
+            (ngModelChange)="onDestinationChange($event)"
+          />
+        </div>
+
+        <!-- BOTÓN -->
+        <button 
+          type="button" 
+          class="btn-execute-search"
+          (click)="onDestinationChange(_destination())"
+        >
+          <i class="bi bi-arrow-right-short"></i>
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+</section>
