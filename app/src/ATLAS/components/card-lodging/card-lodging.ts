@@ -21,7 +21,7 @@ export class CardLodgingComponent {
 
   top3Lodging = computed(() =>
   [...this.lodgingService.lodgingsSignal()]
-    .sort((a, b) => b.rating - a.rating)   // mayor → menor
+    .sort((a, b) => b.rating - a.rating) 
     .slice(0, 3)
 );
 

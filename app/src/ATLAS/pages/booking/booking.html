@@ -2,14 +2,19 @@
   <h1 class="title">Mis Reservas</h1>
 
   @if (bookingService.isLoading()) {
-    <div class="loading">Cargando reservas...</div>
-  } @else if (bookingService.allBookings().length === 0) {
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <p>Cargando reservas...</p>
+    </div>
+  } 
+  @else if (bookingService.allBookings().length === 0) {
     <div class="empty-state">
       <i class="bi bi-calendar-x"></i>
       <p>No tienes reservas aún</p>
       <a routerLink="/lodgings" class="btn-primary">Explorar alojamientos</a>
     </div>
-  } @else {
+  } 
+  @else {
     <div class="cards-grid">
       @for (item of bookingService.allBookings(); track item.id) {
         <div class="card">
