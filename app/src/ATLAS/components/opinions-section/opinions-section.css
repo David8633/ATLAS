@@ -237,3 +237,39 @@
   border-radius: 6px;
   border: none;
 }
+.opinions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.opinions-header h3 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #142343;
+}
+
+.btn-save {
+  margin-left: auto;
+  border: none;
+  background: linear-gradient(
+    135deg,
+    #142343,
+    #1d4ed8
+  );
+  color: white;
+  padding: 0.8rem 1.4rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+  box-shadow:
+    0 6px 18px rgba(29, 78, 216, 0.25);
+}
+
+.btn-save:hover {
+  transform: translateY(-2px);
+}

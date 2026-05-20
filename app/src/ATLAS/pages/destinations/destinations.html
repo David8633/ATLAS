@@ -1,8 +1,8 @@
 <div class="container">
   <h2>Destinos de moda</h2>
 
+  <!-- GRID SOLO PARA LAS TARJETAS -->
   <div class="grid-layout">
-
     @if (top8Destination().length > 1) {
 
       @for (item of top8Destination(); track item.id; let i = $index) {
@@ -26,14 +26,13 @@
 
       }
 
-    } @else {
-
-      <div class="loading">
-        <div class="spinner"></div>
-        <p>Cargando destinos...</p>
-      </div>
-
     }
-
   </div>
+
+  @if (top8Destination().length <= 1) {
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <p>Cargando alojamiento...</p>
+    </div>
+  }
 </div>

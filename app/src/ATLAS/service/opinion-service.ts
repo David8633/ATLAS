@@ -18,7 +18,7 @@ export class OpinionService {
   currentPage = signal(0);
   totalPages = signal(0);
   totalElements = signal(0);
-  pageSize = 3;
+  pageSize = 2;
   isLoading = signal(false);
   error = signal<string | null>(null);
 

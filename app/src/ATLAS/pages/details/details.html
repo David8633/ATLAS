@@ -1,9 +1,12 @@
-<main class="page-container">
+<div class="page-container">
+
   @if (lodging) {
+
     <div class="details-grid-layout">
-      <!-- COLUMNA IZQUIERDA -->
+
+      <!-- IZQUIERDA -->
       <section class="main-content main-card">
-        <!-- IMAGEN PRINCIPAL -->
+
         <div class="place-image">
           <img
             class="detail-imagen"
@@ -12,40 +15,56 @@
           />
         </div>
 
-        <!-- CONTENIDO PRINCIPAL -->
         <div class="card-inner-content">
-          <!-- CABECERA -->
+
           <header class="place-header-section">
-            <h2 class="place-title">{{ lodging.name }}</h2>
+
+            <h2 class="place-title">
+              {{ lodging.name }}
+            </h2>
 
             <div class="place-meta">
-              <span class="badge">{{ lodging.type }}</span>
+
+              <span class="badge">
+                {{ lodging.type }}
+              </span>
 
               <div class="stars">
-                @for (star of [1, 2, 3, 4, 5]; track star) {
+
+                @for (star of [1,2,3,4,5]; track star) {
+
                   <i
                     class="bi"
                     [class.bi-star-fill]="star <= lodging.rating"
-                    [class.bi-star]="star > lodging.rating"
-                  >
+                    [class.bi-star]="star > lodging.rating">
                   </i>
+
                 }
+
               </div>
+
             </div>
+
           </header>
 
           <hr class="separator" />
 
           <!-- DESCRIPCIÓN -->
           <section class="description-section">
+
             <h3>Descripción</h3>
-            <p>{{ lodging.description }}</p>
+
+            <p>
+              {{ lodging.description }}
+            </p>
+
           </section>
 
-          <!-- INFORMACIÓN -->
-          <!-- INFORMACIÓN -->
+          <!-- INFO -->
           <section class="info-section">
+
             <div class="info-grid">
+
               <div class="info-item">
                 <i class="bi bi-people"></i>
                 <span>{{ lodging.capacity }} habitaciones</span>
@@ -65,14 +84,22 @@
                 <i class="bi bi-globe"></i>
                 <span>{{ lodging.destinationName }}</span>
               </div>
+
             </div>
+
           </section>
 
-          <!-- FECHAS (JUNTAS) Y BOTÓN ABAJO -->
+          <!-- FECHAS -->
           <div class="reserve-block">
+
             <div class="date-row">
+
               <div class="date-field">
-                <label for="checkin">Check‑in</label>
+
+                <label for="checkin">
+                  Check-in
+                </label>
+
                 <input
                   id="checkin"
                   type="date"
@@ -81,10 +108,15 @@
                   [min]="minDate"
                   [max]="checkout || null"
                 />
+
               </div>
 
               <div class="date-field">
-                <label for="checkout">Check‑out</label>
+
+                <label for="checkout">
+                  Check-out
+                </label>
+
                 <input
                   id="checkout"
                   type="date"
@@ -92,51 +124,68 @@
                   class="date-input"
                   [min]="checkin || minDate"
                 />
+
               </div>
+
             </div>
 
             <div class="reserve-btn-row">
-              <button class="reserve-btn" (click)="reserve()">Reservar ahora</button>
+
+              <button
+                class="reserve-btn"
+                (click)="reserve()">
+
+                Reservar ahora
+
+              </button>
+
             </div>
+
           </div>
+
         </div>
+
       </section>
 
-      <!-- COLUMNA DERECHA -->
+      <!-- DERECHA -->
       <aside class="sidebar-content">
-        <!-- OPINIONES -->
-        <app-opinions-section [lodgingId]="lodgingId"></app-opinions-section>
 
-        <!-- MAPA -->
+        <app-opinions-section
+          [lodgingId]="lodgingId">
+        </app-opinions-section>
+
         <div class="map-card">
-          <h3><i class="bi bi-map"></i> Ubicación</h3>
+
+          <h3>
+            <i class="bi bi-map"></i>
+            Ubicación
+          </h3>
 
           <app-map
             [latitude]="lodging.latitude || 40.416775"
             [longitude]="lodging.longitude || -3.70379"
             [name]="lodging.name"
-            [address]="lodging.address"
-          ></app-map>
+            [address]="lodging.address">
+          </app-map>
 
-          <div class="map-coordinates">
-            <small>
-              <i class="bi bi-geo-alt-fill"></i>
-              {{ (lodging.latitude || 40.416775).toFixed(4) }},
-              {{ (lodging.longitude || -3.70379).toFixed(4) }}
-            </small>
-          </div>
         </div>
+
       </aside>
+
     </div>
+
   }
 
   @if (loading()) {
-    <!-- =======================
-            LOADING STATE
-    ======================== -->
+
     <div class="loading-container">
+
       <div class="spinner"></div>
+
       <p>Cargando alojamiento...</p>
+
     </div>
+
   }
-</main>
+
+</div>
