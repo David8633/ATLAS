@@ -13,13 +13,13 @@ import Swal from 'sweetalert2';
 export class RegisterComponent {
 
   private authService = inject(AuthService);
-    private router = inject(Router);
+  private router = inject(Router);
 
 
   fb: FormBuilder = new FormBuilder();
   myForm: FormGroup = this.fb.group({
     name: ['', [Validators.required]],
-    lastname: ['', [Validators.required]], 
+    lastname: ['', [Validators.required]],
     username: ["", [Validators.required, Validators.minLength(5)]],
     email: ["", [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
     password: ["", [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/)]],
@@ -28,7 +28,7 @@ export class RegisterComponent {
 
   isInvalidField(field: string) {
     return this.myForm?.controls[field]?.invalid &&
-           this.myForm?.controls[field]?.touched;
+      this.myForm?.controls[field]?.touched;
   }
 
   getErrorField(field: string) {
@@ -60,11 +60,19 @@ export class RegisterComponent {
         });
         this.router.navigateByUrl("/auth/login");
       },
-      error: () => {
+      error: (error) => {
+
+        console.log(error);
+
+        const backendMessage =
+          error?.error?.messages ||
+          error?.error ||
+          'No se pudo completar el registro.';
+
         Swal.fire({
           icon: 'error',
           title: 'Error en el registro',
-          text: 'No se pudo completar el registro. Inténtalo de nuevo.',
+          text: backendMessage,
           confirmButtonColor: '#d33'
         });
       }
