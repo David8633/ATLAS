@@ -10,8 +10,8 @@
             </nav>
             <div class="auth-buttons">
                 @if(token){
-                    <a routerLink="/account" class="round-link">
-                        <i class="bi bi-person-circle"></i>
+                    <a routerLink="/account" class="user-avatar round-link">
+                        {{getUserInitial()}}
                     </a>    
                 }@else {
                     <a routerLink="/auth/login" class="btn-auth btn-login" aria-label="Log in - Iniciar sesión">LOG IN</a>

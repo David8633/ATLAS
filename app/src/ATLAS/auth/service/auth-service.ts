@@ -39,7 +39,7 @@ export class AuthService {
         firstName: decoded.firstName,
         lastName: decoded.lastName,
         role: decoded.role,
-        username: decoded.username
+        username: decoded.sub
       });
     } catch (error) {
       console.error('Error decoding token:', error);

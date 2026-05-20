@@ -91,6 +91,52 @@ export interface UserType {
   username: string;
 }
 
+// src/app/types/types.ts
+export interface OpinionRequest {
+    rating: number;
+    comments: string;
+    lodgingId: number;
+}
+
+export interface OpinionType {
+    id: number;
+    rating: number;
+    comments: string;
+    userName: string;
+    userEmail: string;
+    lodgingId: number;
+    createdAt: string;
+    updatedAt?: string;
+}
+
+export interface PageResponse<T> {
+    content: T[];
+    pageable: {
+        pageNumber: number;
+        pageSize: number;
+        sort: {
+            sorted: boolean;
+            unsorted: boolean;
+            empty: boolean;
+        };
+        offset: number;
+        paged: boolean;
+        unpaged: boolean;
+    };
+    last: boolean;
+    totalElements: number;
+    totalPages: number;
+    size: number;
+    number: number;
+    sort: {
+        sorted: boolean;
+        unsorted: boolean;
+        empty: boolean;
+    };
+    first: boolean;
+    numberOfElements: number;
+    empty: boolean;
+}
 
 // ===============================
 // Destino

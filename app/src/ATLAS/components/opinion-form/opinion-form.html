@@ -1,0 +1,65 @@
+<div class="opinion-form-overlay" (click)="onClose.emit()">
+  <div class="opinion-form-modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ editingOpinion ? '✏️ Editar opinión' : '⭐ Nueva opinión' }}</h3>
+      <button class="close-btn" (click)="onClose.emit()">×</button>
+    </div>
+    
+    <form [formGroup]="opinionForm" (ngSubmit)="onSubmit()">
+      <div class="rating-section">
+        <label>Tu puntuación:</label>
+        <div class="stars-input">
+          @for (star of stars; track star) {
+            <span 
+              class="star" 
+              [class.filled]="star <= opinionForm.get('rating')?.value"
+              (click)="setRating(star)">
+              ★
+            </span>
+          }
+        </div>
+        @if (opinionForm.get('rating')?.invalid && opinionForm.get('rating')?.touched) {
+          <div class="error">Selecciona una puntuación</div>
+        }
+      </div>
+
+      <div class="comments-section">
+        <label for="comments">Tu comentario:</label>
+        <textarea 
+          id="comments"
+          formControlName="comments"
+          rows="4"
+          placeholder="Cuéntanos tu experiencia..."
+          [class.invalid]="opinionForm.get('comments')?.invalid && opinionForm.get('comments')?.touched">
+        </textarea>
+        @if (opinionForm.get('comments')?.invalid && opinionForm.get('comments')?.touched) {
+          <div class="error">
+            @if (opinionForm.get('comments')?.errors?.['required']) {
+              El comentario es requerido
+            }
+            @if (opinionForm.get('comments')?.errors?.['minlength']) {
+              Mínimo 10 caracteres
+            }
+            @if (opinionForm.get('comments')?.errors?.['maxlength']) {
+              Máximo 500 caracteres
+            }
+          </div>
+        }
+      </div>
+
+      <div class="form-actions">
+        <button type="button" (click)="onClose.emit()" class="btn-cancel">
+          Cancelar
+        </button>
+        <button type="submit" [disabled]="opinionForm.invalid || isSubmitting" class="btn-submit">
+          @if (isSubmitting) {
+            <span class="spinner-small"></span>
+            Guardando...
+          } @else {
+            {{ editingOpinion ? 'Actualizar' : 'Publicar' }}
+          }
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

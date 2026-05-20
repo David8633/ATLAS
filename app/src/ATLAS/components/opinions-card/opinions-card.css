@@ -1,179 +1,117 @@
+/* CARD */
 .opinion-card {
-  background: white;
-  border-radius: 20px;
-  padding: 1.25rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: all 0.2s ease;
-  border: 1px solid #ffffff;
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+  border: 1px solid #f1f5f9;
 }
 
 .opinion-card:hover {
-  box-shadow: 0 4px 16px ;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
 }
 
-.opinion-card.editing {
-  background: #ffffff;
-  border-color: #facc15;
-}
-
-/* ========== HEADER ========== */
+/* HEADER */
 .card-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 1rem;
 }
 
+/* USER INFO */
 .user-info {
   display: flex;
-  gap: 0.75rem;
   align-items: center;
+  gap: 0.9rem;
 }
 
 .user-avatar {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.editing-avatar {
-  background: linear-gradient(135deg, #facc15, #eab308);
-}
-
-.user-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
 .user-name {
-  font-size: 1rem;
+  font-weight: 600;
   color: #1e293b;
 }
 
 .review-date {
-  font-size: 0.7rem;
-  color: #94a3b8;
+  font-size: 0.8rem;
+  color: #64748b;
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.3rem;
 }
 
-.edit-hint {
-  font-size: 0.7rem;
-  color: #eab308;
-}
-
-/* ========== RATING ========== */
+/* RATING */
 .rating-section {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   background: #f8fafc;
-  padding: 0.4rem 0.8rem;
-  border-radius: 30px;
-}
-
-.rating-section.editable {
-  background: #fef9c3;
-  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
 }
 
 .stars {
   color: #fbbf24;
-  font-size: 1rem;
-}
-
-.stars i {
-  margin-right: 2px;
-}
-
-.editable .stars i {
-  cursor: pointer;
-  transition: transform 0.1s ease;
-}
-
-.editable .stars i:hover {
-  transform: scale(1.1);
+  font-size: 1.2rem;
 }
 
 .rating-number {
-  font-weight: bold;
+  font-weight: 600;
   color: #334155;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
-/* ========== BODY ========== */
-.card-body {
-  margin: 1rem 0 1rem 3.5rem;
-}
-
-.comment-text {
-  color: #475569;
-  line-height: 1.5;
-  margin: 0;
-}
-
-.edit-textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  font-family: inherit;
-  font-size: 0.9rem;
-  resize: vertical;
-  transition: border-color 0.2s;
-  background: white;
-}
-
-.edit-textarea:focus {
-  outline: none;
-  border-color: #facc15;
-  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.1);
-}
-
-/* ========== ACTIONS ========== */
-.card-actions {
+/* 🔥 CONTENEDOR QUE UNE RATING + BOTONES */
+.rating-actions-wrapper {
   display: flex;
-  gap: 0.75rem;
-  justify-content: flex-end;
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid #f1f5f9;
+  align-items: center; 
+  gap: 1rem;
 }
 
-.card-actions button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.4rem 1rem;
+/* BOTONES */
+.opinion-actions {
+  display: flex;
+  align-items: center; 
+  gap: 0.5rem;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
   border: none;
-  border-radius: 30px;
-  font-size: 0.8rem;
-  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease;
 }
 
 .btn-edit {
-  background: #e2e8f0;
-  color: #475569;
+  background: #eef2ff;
+  color: #4338ca;
 }
 
 .btn-edit:hover {
-  background: #cbd5e1;
-  transform: translateY(-1px);
+  background: #c7d2fe;
 }
 
 .btn-delete {
@@ -183,32 +121,12 @@
 
 .btn-delete:hover {
   background: #fecaca;
-  transform: translateY(-1px);
 }
 
-.btn-save {
-  background: #22c55e;
-  color: white;
+/* BODY */
+.comment-text {
+  color: #475569;
+  line-height: 1.55;
+  font-size: 0.95rem;
+  margin-top: 0.8rem;
 }
-
-.btn-save:hover {
-  background: #16a34a;
-  transform: translateY(-1px);
-}
-
-.btn-cancel {
-  background: #e2e8f0;
-  color: #64748b;
-}
-
-.btn-cancel:hover {
-  background: #cbd5e1;
-  transform: translateY(-1px);
-}
-
-.edit-actions {
-  border-top-color: #fef3c7;
-}
-
-/* ========== AVATAR COLORES DINÁMICOS ========== */
-/* Estas clases se aplican desde TypeScript con getAvatarColor() */

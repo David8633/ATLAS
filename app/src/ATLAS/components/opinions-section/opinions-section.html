@@ -1,81 +1,70 @@
 <div class="opinions-section">
-
-  <!-- HEADER -->
-  <div class="section-header">
-    <h3>
-      <i class="bi bi-chat-dots-fill"></i>
-      Opiniones
-    </h3>
+  <div class="opinions-header">
+    <h3>Opiniones de nuestros huéspedes</h3>
+    @if (canCreateOpinion) {
+      <button (click)="openCreateForm()" class="btn-primary">
+        Escribir opinión
+      </button>
+    }
   </div>
 
-  <!-- LOADING -->
+  <!-- Formulario -->
+  @if (showForm) {
+    <app-opinion-form 
+      [lodgingId]="lodgingId"
+      [editingOpinion]="editingOpinion"
+      (onClose)="closeForm()"
+      (onSuccess)="onFormSuccess()">
+    </app-opinion-form>
+  }
+
+  <!-- Loading -->
   @if (opinionService.isLoading()) {
-
     <div class="loading">
-      Cargando opiniones...
+      <div class="spinner"></div>
+      <p>Cargando opiniones...</p>
     </div>
-
   }
 
-  <!-- EMPTY -->
-  @else if (opinionService.opinions().length === 0) {
-
-    <div class="empty-state">
-
-      <i class="bi bi-chat-dots"></i>
-
-      <p>
-        Todavía no hay opiniones.
-      </p>
-
-    </div>
-
+  <!-- Opiniones -->
+  @if (!opinionService.isLoading()) {
+    @if (opinionService.opinions().length === 0) {
+      <div class="no-opinions">
+        <p>No hay opiniones aún. ¡Sé el primero en opinar!</p>
+      </div>
+    } @else {
+      <div class="opinions-list">
+        @for (opinion of opinionService.opinions(); track opinion.id) {
+          <app-opinion-card 
+            [opinion]="opinion"
+            (onEdit)="openEditForm($event)"
+            (onDelete)="onDeleteOpinion($event)">
+          </app-opinion-card>
+        }
+      </div>
+    }
   }
 
-  <!-- LIST -->
-  @else {
-
-    <div class="opinions-list">
-
-      @for (op of opinionService.opinions(); track op.id) {
-
-        <app-opinion-card
-          [opinion]="op">
-        </app-opinion-card>
-
-      }
-
-    </div>
-
-    <!-- PAGINACIÓN -->
+  <!-- Paginación -->
+  @if (opinionService.totalPages() > 1) {
     <div class="pagination">
-
-      <button
-        (click)="prevPage()"
-        [disabled]="opinionService.currentPage() === 0">
-
-        Anterior
-
+      <button 
+        (click)="prevPage()" 
+        [disabled]="opinionService.currentPage() === 0"
+        class="btn-pagination">
+        ← Anterior
       </button>
-
-      <span>
-
-        {{ opinionService.currentPage() + 1 }}
-        /
-        {{ opinionService.totalPages() }}
-
+      
+      <span class="page-info">
+        Página {{ opinionService.currentPage() + 1 }} de {{ opinionService.totalPages() }}
       </span>
-
-      <button
-        (click)="nextPage()"
-        [disabled]="opinionService.currentPage() + 1 >= opinionService.totalPages()">
-
-        Siguiente
-
+      
+      <button 
+        (click)="nextPage()" 
+        [disabled]="opinionService.currentPage() + 1 >= opinionService.totalPages()"
+        class="btn-pagination">
+        Siguiente →
       </button>
-
     </div>
-
   }
-
 </div>

@@ -40,10 +40,27 @@
 a{
   text-decoration: none;
 }
-
 .nav-links a:hover,
 .nav-links a.active {
   color: rgb(146, 146, 248);
+}
+
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.user-avatar:hover {
+    background: linear-gradient(135deg, #b0b9e0, #3c2e4a);
+
 }
 
 .auth-buttons {
@@ -75,33 +92,5 @@ a{
   border: 2px solid var(--btn-primary);
 }
 
-.round-link {
-    position: relative;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #f1f3f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    overflow: hidden;
-    transition: 0.2s ease;
-}
 
-.round-link i {
-    font-size: 2rem;
-    color: #1d2f49;
-}
-/* Mostrar tooltip al hacer hover */
-.round-link:hover .tooltip {
-    bottom: -45px;
-    opacity: 1;
-}
-
-/* Efecto hover del círculo */
-.round-link:hover {
-    transform: scale(1.05);
-    background: #adc2dd;
-}
 

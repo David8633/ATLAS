@@ -1,63 +1,57 @@
 <div class="opinion-card">
-
   <div class="card-header">
 
     <div class="user-info">
-
       <div class="user-avatar">
         {{ getUserInitial() }}
       </div>
 
       <div class="user-details">
-
         <strong class="user-name">
           {{ opinion.userName }}
         </strong>
 
         <span class="review-date">
-
           <i class="bi bi-calendar3"></i>
-
           {{ formatDate(opinion.publicationDate) }}
-
         </span>
-
       </div>
-
     </div>
 
-    <div class="rating-section">
+    <!-- 🔥 NUEVO CONTENEDOR PARA ALINEAR RATING + BOTONES -->
+    <div class="rating-actions-wrapper">
 
-      <div class="stars">
-
-        @for (star of stars; track star) {
-
-          <i
-            class="bi"
-            [class.bi-star-fill]="star <= opinion.rating"
-            [class.bi-star]="star > opinion.rating">
-          </i>
-
-        }
-
+      <div class="rating-section">
+        <div class="stars">
+          @for (star of stars; track star) {
+            <i
+              class="bi"
+              [class.bi-star-fill]="star <= opinion.rating"
+              [class.bi-star]="star > opinion.rating">
+            </i>
+          }
+        </div>
+        <span class="rating-number"> {{ opinion.rating }}.0 </span>
       </div>
 
-      <span class="rating-number">
+      @if (canEditOrRemove()) {
+        <div class="opinion-actions">
+          <button class="btn-edit" (click)="edit()">
+            <i class="bi bi-pencil-square"></i>
+          </button>
 
-        {{ opinion.rating }}.0
-
-      </span>
+          <button class="btn-delete" (click)="delete()">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      }
 
     </div>
-
   </div>
 
   <div class="card-body">
-
     <p class="comment-text">
       {{ opinion.comments }}
     </p>
-
   </div>
-
 </div>
