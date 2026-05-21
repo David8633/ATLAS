@@ -61,6 +61,13 @@
   margin-bottom: 1rem;
 }
 
+/* Título + botones alineados */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .place-title {
   margin: 0;
   font-size: 2.3rem;
@@ -68,6 +75,48 @@
   color: #142343;
   line-height: 1.2;
 }
+
+/* =========================
+   BOTONES EDITAR / ELIMINAR
+========================= */
+
+.edit-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Azul permanente */
+.action-btn.edit {
+  background: #2b4c7e;
+}
+
+/* Rojo permanente */
+.action-btn.delete {
+  background: #d9534f;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* =========================
+   META
+========================= */
 
 .place-meta {
   display: flex;
@@ -302,10 +351,6 @@
   font-size: 0.9rem;
 }
 
-/* =========================
-   MAPA
-========================= */
-
 .map-card app-map {
   display: block;
   height: 240px !important;
@@ -336,11 +381,9 @@
 }
 
 @keyframes spin {
-
   to {
     transform: rotate(360deg);
   }
-
 }
 
 /* =========================
@@ -348,17 +391,14 @@
 ========================= */
 
 @keyframes fadeIn {
-
   from {
     opacity: 0;
     transform: translateY(10px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
-
 }
 
 /* =========================
@@ -366,15 +406,12 @@
 ========================= */
 
 @media (max-width: 1024px) {
-
   .details-grid-layout {
     grid-template-columns: 1fr;
   }
-
 }
 
 @media (max-width: 768px) {
-
   .page-container {
     padding: 0 14px;
   }
@@ -406,5 +443,4 @@
   .reserve-btn {
     max-width: 100%;
   }
-
 }

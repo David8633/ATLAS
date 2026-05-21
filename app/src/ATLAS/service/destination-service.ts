@@ -37,19 +37,7 @@ export class DestinationService {
   getById(id: number) {
     return this.http.get<DestinationType>(`${this.apiUrl}/${id}`);
   }
-
-  create(destination: Partial<DestinationType>) {
-    return this.http.post<DestinationType>(this.apiUrl, destination);
-  }
-
-  update(id: number, destination: Partial<DestinationType>) {
-    return this.http.patch<DestinationType>(`${this.apiUrl}/${id}`, destination);
-  }
-
-  delete(id: number) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
-  }
-
+  
   getTop8Destinos(): Observable<DestinationType[]> {
     return this.http.get<DestinationType[]>(
       `${this.apiUrl}/top8`

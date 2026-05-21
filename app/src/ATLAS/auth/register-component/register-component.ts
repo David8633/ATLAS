@@ -48,7 +48,19 @@ export class RegisterComponent {
     return null;
   }
 
+  private trimFormValues() {
+  const rawValues = this.myForm.value;
+
+  Object.keys(rawValues).forEach(key => {
+    const value = rawValues[key];
+    if (typeof value === 'string') {
+      this.myForm.get(key)?.setValue(value.trim());
+    }
+  });
+}
+
   register() {
+    this.trimFormValues();
     this.authService.register(this.myForm.value).subscribe({
       next: () => {
         Swal.fire({

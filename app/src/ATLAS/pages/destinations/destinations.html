@@ -8,7 +8,7 @@
       @for (item of top8Destination(); track item.id; let i = $index) {
 
         <a [routerLink]="['/lodgings']"
-           [queryParams]="{ destination: item.countryName }"
+           [queryParams]="{ destination: item.cityName }"
            class="card-link">
 
           <div class="card"
@@ -17,7 +17,8 @@
                [class.small-card]="i >= 2">
 
             <div class="card-content">
-              <h3>{{ item.countryName }}</h3>
+              <h3>{{ item.cityName }}</h3>
+              <h4>{{ item.countryName }}</h4>
             </div>
 
           </div>
