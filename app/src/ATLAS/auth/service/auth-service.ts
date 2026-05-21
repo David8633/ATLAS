@@ -159,4 +159,9 @@ getRole(): string | null {
 currentUser():UserType | undefined {
   return this.userSignal();
 }
+
+
+ canEditOrDelete(){
+    return this.getRole() == 'ADMIN';
+  }
 }

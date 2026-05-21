@@ -1,8 +1,7 @@
 <section class="container content-spacing">
-
   @if (top3Lodging()) {
     <div class="grid-section">
-      @for (lodging of top3Lodging() ; track lodging.id) {
+      @for (lodging of top3Lodging(); track lodging.id) {
         <article class="card-premium" tabindex="0">
           <div class="card-image-wrapper">
             <div class="card-img">
@@ -11,28 +10,37 @@
                 [alt]="'Imagen de ' + lodging.name"
               />
             </div>
-                    </div>
+          </div>
 
           <div class="card-body">
             <h3>{{ lodging.name }}</h3>
 
             <div class="rating-box">
               @for (star of [1, 2, 3, 4, 5]; track star) {
-                <i class="bi" 
-                  [class.bi-star-fill]="star <= (lodging.rating )" 
-                  [class.bi-star]="star > (lodging.rating )">
+                <i
+                  class="bi"
+                  [class.bi-star-fill]="star <= lodging.rating"
+                  [class.bi-star]="star > lodging.rating"
+                >
                 </i>
               }
             </div>
-            
+
             <p class="card-location"><i class="bi bi-geo-alt"></i> {{ lodging.address }}</p>
 
-            <p class="card-description">{{ lodging.description  }}</p>
+            <p class="card-description">{{ lodging.description }}</p>
 
             <div class="card-footer-info">
-              <a [routerLink]="['/details', lodging.id]" class="btn-view-trip">
-                Ver Detalles
-              </a>
+              <a [routerLink]="['/details', lodging.id]" class="btn-view-trip"> Ver Detalles </a>
+              @if (authService.canEditOrDelete()) {
+                <button class="action-btn edit" (click)="onEditClick(lodging)">
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+
+                <button class="action-btn delete" (click)="onDeleteClick(lodging)">
+                  <i class="bi bi-trash-fill"></i>
+                </button>
+              }
             </div>
           </div>
         </article>

@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { AuthGuard, AdminGuard } from './guard/auth-guard';
 
 export const routes: Routes = [
     { path: 'auth', loadChildren : () => import('./auth/router/auth.routes').then(a => a.ROUTES_AUTH)},

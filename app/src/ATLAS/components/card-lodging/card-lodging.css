@@ -1,209 +1,171 @@
 /* ============================= */
-/* VARIABLES Y GENERAL           */
-/* ============================= */
-
-.content-spacing {
-  padding: clamp(40px, 6vw, 70px) 0;
-}
-
-/* ============================= */
-/* HEADER SECCIÓN                */
-/* ============================= */
-
-.section-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.section-title {
-  font-size: clamp(1.6rem, 2.5vw, 2rem);
-  color: var(--header-footer);
-  font-weight: 800;
-  margin-bottom: 10px;
-  letter-spacing: -0.5px;
-}
-
-.section-subtitle {
-  color: var(--icon-dark);
-  font-size: 1rem;
-  opacity: 0.85;
-}
-
-/* ============================= */
-/* GRID Y ESTRUCTURA DE CARD     */
+/* GRID DE CARDS                */
 /* ============================= */
 
 .grid-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 32px;
+  padding: 10px 0;
 }
 
+/* ============================= */
+/* CARD PREMIUM                  */
+/* ============================= */
+
 .card-premium {
-  background: var(--card-bg);
-  border-radius: 18px;
+  background:var(--card-bg) ;
+  border-radius: 20px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: transform 0.35s cubic-bezier(.21,.9,.33,1), box-shadow 0.35s ease;
+  border: 1px solid #e5e9f2;
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
 }
 
 .card-premium:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 45px rgba(14, 0, 206, 0.22);
+  transform: translateY(-8px);
+  box-shadow:
+    0 16px 35px rgba(0, 0, 0, 0.12),
+    0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
 /* ============================= */
-/* CONTENEDOR DE IMAGEN          */
+/* IMAGEN                        */
 /* ============================= */
 
 .card-image-wrapper {
-  position: relative;
-  height: 180px; /* reducido */
+  height: 200px;
   overflow: hidden;
+  position: relative;
 }
 
-.card-img {
+.card-img img {
+  width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.7s cubic-bezier(.2,.8,.2,1);
+  object-fit: cover;
+  transition: transform 0.45s ease;
 }
 
-.card-premium:hover .card-img {
-  transform: scale(1.06);
-}
-
-.card-image-wrapper::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.35));
-  pointer-events: none;
-}
-
-.card-badge {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  background: rgba(255,255,255,0.95);
-  padding: 5px 14px;
-  border-radius: 50px;
-  font-weight: 800;
-  font-size: 0.65rem;
-  color: var(--btn-primary);
-  text-transform: uppercase;
-  letter-spacing: 1.1px;
-  backdrop-filter: blur(4px);
-  z-index: 1;
+.card-premium:hover .card-img img {
+  transform: scale(1.08);
 }
 
 /* ============================= */
-/* CONTENIDO (BODY)              */
+/* CONTENIDO                     */
 /* ============================= */
 
 .card-body {
-  padding: 20px; /* reducido */
-  color: var(--text-on-dark);
+  padding: 20px 22px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
 .card-body h3 {
-  font-size: 1.2rem; /* reducido */
-  margin-bottom: 8px;
+  font-size: 1.25rem;
   font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 10px;
 }
+
+/* ============================= */
+/* RATING                        */
+/* ============================= */
 
 .rating-box {
   color: #fbbf24;
-  font-size: 0.9rem; /* reducido */
+  font-size: 1rem;
   margin-bottom: 12px;
-  letter-spacing: 1px;
+  display: flex;
+  gap: 4px;
 }
 
+/* ============================= */
+/* UBICACIÓN Y DESCRIPCIÓN       */
+/* ============================= */
+
 .card-location {
-  color: var(--text-secondary);
+  color: #475569;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 16px;
-  font-size: 0.85rem;
-  opacity: 0.85;
+  gap: 6px;
 }
 
 .card-description {
-  margin-bottom: 14px;
-  line-height: 1.45;
-  font-size: 0.9rem;
+  color: #64748b;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin-bottom: 18px;
+  flex-grow: 1;
 }
 
 /* ============================= */
-/* FOOTER Y ACCIONES             */
+/* FOOTER                        */
 /* ============================= */
 
 .card-footer-info {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid #e5e9f2;
   padding-top: 14px;
-  margin-top: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* Botón Ver Detalles */
+/* ============================= */
+/* BOTÓN VER DETALLES            */
+/* ============================= */
+
 .btn-view-trip {
-  background: var(--text-on-dark);
-  color: var(--btn-primary);
-  padding: 8px 18px; /* reducido */
+  background: #1d4ed8;
+  color: white;
+  padding: 8px 18px;
   border-radius: 10px;
   text-decoration: none;
-  font-weight: 700;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
+  font-weight: 600;
   font-size: 0.85rem;
+  transition: 0.25s ease;
 }
 
 .btn-view-trip:hover {
-  background: var(--btn-primary);
-  color: var(--text-on-dark);
+  background: #142343;
   transform: translateY(-2px);
 }
 
-/* Botón Corazón (Favoritos) */
-.card-footer-info button {
-  background: transparent;
+/* ============================= */
+/* BOTONES EDITAR / ELIMINAR     */
+/* ============================= */
+
+.action-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
   border: none;
-  color: var(--text-on-dark);
-  font-size: 1.2rem; /* reducido */
-  cursor: pointer;
-  padding: 6px;
   display: flex;
   align-items: center;
-  transition: transform 0.2s ease, color 0.2s ease;
-  outline: none;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.card-footer-info button:hover {
-  transform: scale(1.15);
+/* Azul permanente */
+.action-btn.edit {
+  background: #2b4c7e;
 }
 
-.card-footer-info button .bi-heart-fill {
-  color: #ff4d4d; 
-  filter: drop-shadow(0 0 5px rgba(255, 77, 77, 0.3));
+/* Rojo permanente */
+.action-btn.delete {
+  background: #d9534f;
 }
 
-.card-footer-info button:hover .bi-heart {
-  color: #ff4d4d;
-}
-
-/* Foco accesible */
-.btn-view-trip:focus-visible,
-.card-footer-info button:focus-visible {
-  outline: 3px solid var(--text-secondary);
-  outline-offset: 4px;
-  border-radius: 8px;
+.action-btn:hover {
+  transform: translateY(-2px) scale(1.05);
 }

@@ -1,0 +1,353 @@
+<div class="edit-form-container">
+  <div class="form-header">
+    <h2>
+      @switch (type) {
+        @case ('user') { ✏️ Editar Usuario }
+        @case ('lodging') { 🏨 Editar Alojamiento }
+        @case ('destination') { 🌍 Editar Destino }
+        @case ('booking') { 📅 Editar Reserva }
+      }
+    </h2>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Cargando datos...</p>
+    </div>
+  }
+
+  @if (error()) {
+    <div class="error-message">
+      <span class="icon">❌</span>
+      <span>{{ error() }}</span>
+    </div>
+  }
+
+  @if (success()) {
+    <div class="success-message">
+      <span class="icon">✅</span>
+      <span>{{ success() }}</span>
+    </div>
+  }
+
+  @if (!isLoading() && data() && form) {
+    <form [formGroup]="form" (ngSubmit)="save()">
+      
+      <!-- ============================================ -->
+      <!-- FORMULARIO DE USUARIO -->
+      <!-- ============================================ -->
+      @if (type === 'user') {
+        <div class="form-group">
+          <label>Nombre</label>
+          <input 
+            type="text" 
+            formControlName="firstName"
+            placeholder="Ingresa el nombre"
+            [class.invalid]="form.get('firstName')?.invalid && form.get('firstName')?.touched">
+          @if (form.get('firstName')?.invalid && form.get('firstName')?.touched) {
+            <div class="field-error">El nombre es requerido</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label>Apellidos</label>
+          <input 
+            type="text" 
+            formControlName="lastName"
+            placeholder="Ingresa los apellidos"
+            [class.invalid]="form.get('lastName')?.invalid && form.get('lastName')?.touched">
+          @if (form.get('lastName')?.invalid && form.get('lastName')?.touched) {
+            <div class="field-error">Los apellidos son requeridos</div>
+          }
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Username</label>
+            <input 
+              type="text" 
+              formControlName="username"
+              placeholder="Nombre de usuario"
+              [class.invalid]="form.get('username')?.invalid && form.get('username')?.touched">
+            @if (form.get('username')?.invalid && form.get('username')?.touched) {
+              <div class="field-error">Username requerido (mínimo 3 caracteres)</div>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Email</label>
+            <input 
+              type="email" 
+              formControlName="email"
+              placeholder="correo@ejemplo.com"
+              [class.invalid]="form.get('email')?.invalid && form.get('email')?.touched">
+            @if (form.get('email')?.invalid && form.get('email')?.touched) {
+              <div class="field-error">Email válido requerido</div>
+            }
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Rol</label>
+          <select formControlName="role">
+            <option value="USER">👤 Usuario</option>
+            <option value="ADMIN">👑 Administrador</option>
+          </select>
+        </div>
+      }
+
+      <!-- ============================================ -->
+      <!-- FORMULARIO DE ALOJAMIENTO -->
+      <!-- ============================================ -->
+      @if (type === 'lodging') {
+        <div class="form-group">
+          <label>Nombre del alojamiento</label>
+          <input 
+            type="text" 
+            formControlName="name"
+            placeholder="Ej: Hotel Barcelona"
+            [class.invalid]="form.get('name')?.invalid && form.get('name')?.touched">
+          @if (form.get('name')?.invalid && form.get('name')?.touched) {
+            <div class="field-error">El nombre es requerido</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label>Dirección</label>
+          <input 
+            type="text" 
+            formControlName="address"
+            placeholder="Calle, número, ciudad"
+            [class.invalid]="form.get('address')?.invalid && form.get('address')?.touched">
+          @if (form.get('address')?.invalid && form.get('address')?.touched) {
+            <div class="field-error">La dirección es requerida</div>
+          }
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Precio por noche (€)</label>
+            <input 
+              type="number" 
+              step="0.01" 
+              formControlName="pricePerNight"
+              placeholder="0.00"
+              [class.invalid]="form.get('pricePerNight')?.invalid && form.get('pricePerNight')?.touched">
+            @if (form.get('pricePerNight')?.invalid && form.get('pricePerNight')?.touched) {
+              <div class="field-error">Precio válido requerido</div>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Capacidad (personas)</label>
+            <input 
+              type="number" 
+              formControlName="capacity"
+              placeholder="1"
+              [class.invalid]="form.get('capacity')?.invalid && form.get('capacity')?.touched">
+            @if (form.get('capacity')?.invalid && form.get('capacity')?.touched) {
+              <div class="field-error">Capacidad mínima 1 persona</div>
+            }
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Tipo</label>
+            <select formControlName="type">
+              <option value="HOTEL">🏨 Hotel</option>
+              <option value="HOSTAL">🏘️ Hostal</option>
+              <option value="APARTHOTEL">🏢 Aparthotel</option>
+              <option value="CASA_RURAL">🌿 Casa Rural</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Valoración (0-5)</label>
+            <input 
+              type="number" 
+              step="0.1" 
+              min="0" 
+              max="5" 
+              formControlName="rating"
+              placeholder="0.0">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Descripción</label>
+          <textarea 
+            formControlName="description" 
+            rows="4"
+            placeholder="Describe el alojamiento, servicios, ubicación..."></textarea>
+        </div>
+
+        <div class="form-group checkbox">
+          <label>
+            <input type="checkbox" formControlName="active">
+            <span>✅ Activo (disponible para reservas)</span>
+          </label>
+        </div>
+      }
+
+      <!-- ============================================ -->
+      <!-- FORMULARIO DE DESTINO -->
+      <!-- ============================================ -->
+      @if (type === 'destination') {
+        <div class="form-row">
+          <div class="form-group">
+            <label>País</label>
+            <input 
+              type="text" 
+              formControlName="countryName"
+              placeholder="Ej: España"
+              [class.invalid]="form.get('countryName')?.invalid && form.get('countryName')?.touched">
+            @if (form.get('countryName')?.invalid && form.get('countryName')?.touched) {
+              <div class="field-error">El país es requerido</div>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Ciudad</label>
+            <input 
+              type="text" 
+              formControlName="cityName"
+              placeholder="Ej: Barcelona"
+              [class.invalid]="form.get('cityName')?.invalid && form.get('cityName')?.touched">
+            @if (form.get('cityName')?.invalid && form.get('cityName')?.touched) {
+              <div class="field-error">La ciudad es requerida</div>
+            }
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Descripción</label>
+          <textarea 
+            formControlName="description" 
+            rows="4"
+            placeholder="Describe el destino, atracciones, clima..."></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Latitud</label>
+            <input 
+              type="number" 
+              step="any" 
+              formControlName="latitude"
+              placeholder="Ej: 41.385063">
+          </div>
+
+          <div class="form-group">
+            <label>Longitud</label>
+            <input 
+              type="number" 
+              step="any" 
+              formControlName="longitude"
+              placeholder="Ej: 2.173404">
+          </div>
+        </div>
+      }
+
+      <!-- ============================================ -->
+      <!-- FORMULARIO DE RESERVA -->
+      <!-- ============================================ -->
+      @if (type === 'booking') {
+        <div class="form-row">
+          <div class="form-group">
+            <label>ID Usuario</label>
+            <input 
+              type="number" 
+              formControlName="userId"
+              placeholder="ID del usuario"
+              [class.invalid]="form.get('userId')?.invalid && form.get('userId')?.touched">
+            @if (form.get('userId')?.invalid && form.get('userId')?.touched) {
+              <div class="field-error">ID de usuario requerido</div>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>ID Alojamiento</label>
+            <input 
+              type="number" 
+              formControlName="lodgingId"
+              placeholder="ID del alojamiento"
+              [class.invalid]="form.get('lodgingId')?.invalid && form.get('lodgingId')?.touched">
+            @if (form.get('lodgingId')?.invalid && form.get('lodgingId')?.touched) {
+              <div class="field-error">ID de alojamiento requerido</div>
+            }
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Fecha Check-in</label>
+            <input 
+              type="date" 
+              formControlName="checkinDate"
+              [class.invalid]="form.get('checkinDate')?.invalid && form.get('checkinDate')?.touched">
+            @if (form.get('checkinDate')?.invalid && form.get('checkinDate')?.touched) {
+              <div class="field-error">Fecha de entrada requerida</div>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Fecha Check-out</label>
+            <input 
+              type="date" 
+              formControlName="checkoutDate"
+              [class.invalid]="form.get('checkoutDate')?.invalid && form.get('checkoutDate')?.touched">
+            @if (form.get('checkoutDate')?.invalid && form.get('checkoutDate')?.touched) {
+              <div class="field-error">Fecha de salida requerida</div>
+            }
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Estado</label>
+            <select formControlName="status">
+              <option value="PENDING">⏳ Pendiente</option>
+              <option value="CONFIRMED">✅ Confirmada</option>
+              <option value="CANCELLED">❌ Cancelada</option>
+              <option value="COMPLETED">🏁 Completada</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Método de pago</label>
+            <select formControlName="paymentMethod">
+              <option value="CREDIT_CARD">💳 Tarjeta de crédito</option>
+              <option value="PAYPAL">📱 PayPal</option>
+              <option value="TRANSFER">🏦 Transferencia bancaria</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group checkbox">
+          <label>
+            <input type="checkbox" formControlName="paid">
+            <span>💰 Pagada</span>
+          </label>
+        </div>
+      }
+
+      <!-- Botones de acción -->
+      <div class="form-actions">
+        <button type="button" class="btn-cancel" (click)="cancel()">
+          ❌ Cancelar
+        </button>
+        <button type="submit" class="btn-save" [disabled]="form.invalid || isLoading()">
+          @if (isLoading()) {
+            <span class="spinner-small"></span>
+            <span>Guardando...</span>
+          } @else {
+            <span>💾</span>
+            <span>Guardar cambios</span>
+          }
+        </button>
+      </div>
+    </form>
+  }
+</div>

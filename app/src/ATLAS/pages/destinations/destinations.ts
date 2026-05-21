@@ -2,7 +2,7 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { DestinationService } from '../../service/destination-service';
-import { DestinationType } from '../../types/types';
+import { DestinationType, LodgingsType } from '../../types/types';
 
 @Component({
   selector: 'app-destinations',
@@ -14,11 +14,11 @@ import { DestinationType } from '../../types/types';
 export class Destinations implements OnInit {
 
   destinationService = inject(DestinationService);
-  top8Destination =  signal<DestinationType[]>([]) ;
+  top8Destination = signal<DestinationType[]>([]);
   isLoading = signal(true);
 
   ngOnInit() {
-     this.destinationService.getTop8Destinos().subscribe({
+    this.destinationService.getTop8Destinos().subscribe({
 
       next: (destinations) => {
 
@@ -35,6 +35,6 @@ export class Destinations implements OnInit {
 
         this.isLoading.set(false);
       }
-  });
-}
+    });
+  }
 }

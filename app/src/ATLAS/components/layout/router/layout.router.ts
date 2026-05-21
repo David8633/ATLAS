@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Layout } from '../layout';
 import { AuthGuard } from '../../../guard/auth-guard';
+import { EditFormComponent } from '../../edit-form/edit-form';
 
 export const ROUTES_LAYOUT: Routes = [
   {
@@ -40,6 +41,10 @@ export const ROUTES_LAYOUT: Routes = [
         canActivate: [AuthGuard], 
         loadComponent: () =>
           import('../../../pages/pay-booking/pay-booking').then(t => t.PayBooking)
+      },{
+        path: 'edit/:type/:id',
+        canActivate: [AuthGuard],
+        loadComponent: () => EditFormComponent
       }
     ]
   }

@@ -60,10 +60,6 @@ export class BookingService {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
-  updateStatus(id: number, status: string) {
-    return this.http.patch<BookingType>(`${this.apiUrl}/${id}?estado=${status}`, {});
-  }
-
   getById(id: number) {
     return this.http.get<BookingType>(`${this.apiUrl}/${id}`);
   }
