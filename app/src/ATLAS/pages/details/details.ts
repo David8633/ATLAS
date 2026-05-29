@@ -1,7 +1,7 @@
-import {Component,  OnInit, inject, signal} from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { LodgingService } from '../../service/lodging-service';
 import { OpinionService } from '../../service/opinion-service';
 import { OpinionsSection } from '../../components/opinions-section/opinions-section';
@@ -31,7 +31,7 @@ export class Details implements OnInit {
 
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
-  private bookingStore =  inject(BookingStore);
+  private bookingStore = inject(BookingStore);
   authService = inject(AuthService);
 
   lodgingService = inject(LodgingService);
@@ -43,7 +43,7 @@ export class Details implements OnInit {
 
   checkin: string = '';
   checkout: string = '';
-
+  people: number = 1;
   nights: number = 0;
   totalPrice: number = 0;
 
@@ -110,36 +110,41 @@ export class Details implements OnInit {
   reserve() {
 
     if (!this.checkin || !this.checkout) {
-
       Swal.fire({
         icon: 'warning',
         title: 'Selecciona fechas',
-        text:
-          'Debes elegir check-in y check-out.',
+        text: 'Debes elegir check-in y check-out.',
         confirmButtonColor: '#007bff'
       });
-
       return;
     }
 
     const start = new Date(this.checkin);
-
-    const end =  new Date(this.checkout);
+    const end = new Date(this.checkout);
 
     if (start >= end) {
       Swal.fire({
         icon: 'error',
         title: 'Fechas inválidas',
-        text:
-          'La fecha de entrada debe ser anterior.',
+        text: 'La fecha de entrada debe ser anterior.',
+        confirmButtonColor: '#d33'
+      });
+      return;
+    }
+
+    // VALIDACIÓN DE PERSONAS
+    if (this.people > 10) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Cantidad inválida',
+        text: 'La cantidad de personas no puede ser mayor a 10.',
         confirmButtonColor: '#d33'
       });
       return;
     }
 
     this.nights = this.calculateNights();
-
-    this.totalPrice = this.lodging.pricePerNight *  this.nights;
+    this.totalPrice = this.lodging.pricePerNight * this.nights;
 
     this.bookingStore.setBooking({
       checkin: this.checkin,
@@ -147,24 +152,22 @@ export class Details implements OnInit {
       nights: this.nights,
       totalPrice: this.totalPrice,
       lodgingId: this.lodging.id,
-      lodgingName: this.lodging.name
+      lodgingName: this.lodging.name,
+      people: this.people
     });
 
     Swal.fire({
       icon: 'success',
       title: 'Reserva preparada',
-      text:
-        `Has reservado ${this.nights} noche(s). ` +
-        `Total: ${this.totalPrice} €`
+      text: `Has reservado ${this.nights} noche(s). Total: ${this.totalPrice} €`
     }).then(() => {
-      this.router.navigate([
-        '/payBooking'
-      ]);
+      this.router.navigate(['/payBooking']);
     });
   }
 
+
   onEdit(lodging: LodgingsType) {
-    this.router.navigateByUrl("/edit/lodging/"+lodging.id);
+    this.router.navigateByUrl("/edit/lodging/" + lodging.id);
   }
 
 

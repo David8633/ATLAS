@@ -112,6 +112,19 @@
               </div>
             </div>
 
+            <!-- CANTIDAD DE PERSONAS -->
+            <div class="people-block">
+              <label for="people">Cantidad de personas</label>
+              <input
+                id="people"
+                type="number"
+                class="date-input"
+                [(ngModel)]="people"
+                min="1"
+                max="10"
+              />
+            </div>
+
             <div class="reserve-btn-row">
               <button class="reserve-btn" (click)="reserve()">Reservar ahora</button>
             </div>

@@ -88,6 +88,14 @@ export class SearchEngine {
 
   // PERSONAS
   onPersonChange(value: string) {
+    if(parseInt(value)>10){
+      Swal.fire({
+        icon: 'error',
+        title: 'Cantidad de personas',
+        text: 'La cantidad de personas no puede ser superior a diez',
+        confirmButtonColor: '#142343'
+      });
+    }
     this._count.set(value);
     this.personChange.emit(value || null);
   }

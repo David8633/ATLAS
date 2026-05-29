@@ -157,11 +157,13 @@ goToDetails(lodging: LodgingsType) {
     nights,
     totalPrice: lodging.pricePerNight * nights,
     lodgingId: lodging.id,
-    lodgingName: lodging.name
+    lodgingName: lodging.name,
+    people: Number(this.person())   // ✅ AQUÍ EL ARREGLO
   });
 
   this.router.navigate(['/details', lodging.id]);
 }
+
 
 
 }
