@@ -170,11 +170,4 @@
   transform: translateY(-2px) scale(1.05);
 }
 
-.card-description {
-  display: -webkit-box;
-  -webkit-line-clamp: 2; /* número de líneas */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 

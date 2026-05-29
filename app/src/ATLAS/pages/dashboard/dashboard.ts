@@ -29,7 +29,7 @@ export class Dashboard implements OnInit {
   }
 
   onEdit(lodging : LodgingsType){
-    this.router.navigateByUrl("/details/"+lodging.id);
+    this.router.navigateByUrl("/edit/lodging/"+lodging.id);
   }
 
 }
