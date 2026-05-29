@@ -28,7 +28,7 @@
 
             <p class="card-location"><i class="bi bi-geo-alt"></i> {{ lodging.address }}</p>
 
-            <p class="card-description">{{ lodging.description }}</p>
+            <p class="card-description"> {{ lodging.description | slice:0:120 }}...<p>
 
             <div class="card-footer-info">
               <a [routerLink]="['/details', lodging.id]" class="btn-view-trip"> Ver Detalles </a>

@@ -25,6 +25,8 @@ export class PayBooking implements OnInit {
 
   paymentMethod: string = '';
 
+  people: number = 1;
+
   private router = inject(Router);
   private bookingService = inject(BookingService);
   private bookingStore = inject(BookingStore);
@@ -41,6 +43,7 @@ export class PayBooking implements OnInit {
     this.checkout = this.bookingStore.checkout()!;
     this.nights = this.bookingStore.nights()!;
     this.totalPrice = this.bookingStore.totalPrice()!;
+    this.people = this.bookingStore.people();
   }
 
   payBooking() {

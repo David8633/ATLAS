@@ -11,7 +11,7 @@ export class BookingStore {
   totalPrice = signal<number>(0);
   lodgingId = signal<number | null>(null);
   lodgingName = signal<string | null>(null);
-  people = signal<number | null>(null);
+  people = signal<number>(1);
 
   setBooking(data: {
     checkin: string;
@@ -51,6 +51,6 @@ export class BookingStore {
     this.totalPrice.set(0);
     this.lodgingId.set(null);
     this.lodgingName.set(null);
-    this.people.set(null);
+    this.people.set(1);
   }
 }
