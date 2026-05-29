@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core';
+import { single } from 'rxjs';
 import Swal from 'sweetalert2';
 
 @Injectable({ providedIn: 'root' })
@@ -10,6 +11,7 @@ export class BookingStore {
   totalPrice = signal<number>(0);
   lodgingId = signal<number | null>(null);
   lodgingName = signal<string | null>(null);
+  people = signal<number | null>(null);
 
   setBooking(data: {
     checkin: string;
@@ -18,6 +20,7 @@ export class BookingStore {
     totalPrice: number;
     lodgingId: number;
     lodgingName: string;
+    people:number
   }) {
     this.checkin.set(data.checkin);
     this.checkout.set(data.checkout);
@@ -25,6 +28,7 @@ export class BookingStore {
     this.totalPrice.set(data.totalPrice);
     this.lodgingId.set(data.lodgingId);
     this.lodgingName.set(data.lodgingName);
+    this.people.set(data.people)
   }
 
   validateOrAlert(): boolean {
@@ -47,5 +51,6 @@ export class BookingStore {
     this.totalPrice.set(0);
     this.lodgingId.set(null);
     this.lodgingName.set(null);
+    this.people.set(null);
   }
 }
