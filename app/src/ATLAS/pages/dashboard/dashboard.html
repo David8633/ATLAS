@@ -1,12 +1,16 @@
-<div class="hero-wrapper">
+<div class="hero-wrapper hero-blue">
 
   <h1 class="hero-title">Alojamientos Recomendados</h1>
 
   <div class="search-bg-image" aria-hidden="true"></div>
-
 </div>
 
+<p class="hero-subtitle">
+  Bienvenido a ATLAS — tu puerta de entrada a los mejores alojamientos de Andalucía.
+  Explora, descubre y vive experiencias únicas en cada destino.
+</p>
+
 <app-card-lodging
-(delete)="onDelete($event)"
-(edit)="onEdit($event)"
+  (delete)="onDelete($event)"
+  (edit)="onEdit($event)"
 ></app-card-lodging>

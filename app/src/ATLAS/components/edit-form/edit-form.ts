@@ -121,7 +121,7 @@ export class EditFormComponent implements OnInit {
           capacity: [currentData.capacity || 1, [Validators.required, Validators.min(1)]],
           type: [currentData.type || 'HOTEL', Validators.required],
           rating: [currentData.rating || 0, [Validators.min(0), Validators.max(5)]],
-          active: [currentData.active !== undefined ? currentData.active : true]
+          active: [currentData.active ?? true]
         });
         break;
 
@@ -186,6 +186,7 @@ export class EditFormComponent implements OnInit {
             setTimeout(() => this.router.navigate(['/admin']), 2000);
           },
           error: (err) => {
+console.log("DATA QUE ENVÍO:", JSON.stringify(updatedData, null, 2));
             this.error.set('Error actualizando alojamiento: ' + err.error?.messages || err.messages);
             this.isLoading.set(false);
           }

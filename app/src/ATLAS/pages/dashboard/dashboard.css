@@ -24,3 +24,13 @@
   z-index: 10;            /* Encima de la imagen */
   pointer-events: none;   /* No bloquea clics */
 }
+.hero-subtitle {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #05244d;
+  text-align: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.9;
+}

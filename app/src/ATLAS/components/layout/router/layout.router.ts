@@ -47,7 +47,7 @@ export const ROUTES_LAYOUT: Routes = [
         canActivate: [AuthGuard],
         loadComponent: () => EditFormComponent
       }, {
-        path: '/atlas',
+        path: 'aboutUs',
         loadComponent: () => import('../../../pages/about-us/about-us').then(t => t.AboutUs)
 
       }

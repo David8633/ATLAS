@@ -3,7 +3,6 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
-import { AuthService } from '../auth/service/auth-service';
 import { DestinationType, LodgingsType, PageResponse, UserType } from '../types/types';
 import { Booking } from '../pages/booking/booking';
 
@@ -89,9 +88,12 @@ export class AdminService {
     return this.http.post<LodgingsType>(`${this.apiUrl}/alojamientos`, lodging);
   }
 
- updateLodging(id: number, lodging: Partial<LodgingsType>): Observable<LodgingsType> {
-  return this.http.put<LodgingsType>(`${this.apiUrl}/alojamientos/${id}`, lodging);
+updateLodging(id: number, lodging: Partial<LodgingsType>): Observable<LodgingsType> {
+  return this.http.patch<LodgingsType>(`${this.apiUrl}/alojamientos/${id}`, lodging, {
+    headers: { 'Content-Type': 'application/json' }
+  });
 }
+
 
 
   deleteLodging(id: number): Observable<void> {
