@@ -7,7 +7,7 @@
     <p><strong>Alojamiento:</strong> {{ lodgingName }}</p>
     <p><strong>Entrada:</strong> {{ checkin }}</p>
     <p><strong>Salida:</strong> {{ checkout }}</p>
-    <p><strong>Personas:</strong>{{people}}</p>
+    <p><strong>Personas:</strong> {{ people }}</p>
     <p><strong>Noches:</strong> {{ nights }}</p>
     <p><strong>Total:</strong> {{ totalPrice }} €</p>
   </div>
@@ -31,6 +31,10 @@
 
   <button class="btn-confirm" (click)="payBooking()">
     Confirmar pago
+  </button>
+
+  <button class="btn-danger" (click)="back()">
+    Cancelar Pago
   </button>
 
 </div>

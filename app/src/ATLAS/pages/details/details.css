@@ -465,3 +465,14 @@
     max-width: 100%;
   }
 }
+.price-preview {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  background: #f5f7ff;
+  border-left: 4px solid #007bff;
+  border-radius: 6px;
+  color: #333;
+}
+

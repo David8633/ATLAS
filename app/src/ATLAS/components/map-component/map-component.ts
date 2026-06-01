@@ -22,7 +22,7 @@ L.Marker.prototype.options.icon = iconDefault;
   selector: 'app-map',
   standalone: true,
   imports: [CommonModule],
-  templateUrl:'./map-component.html', 
+  templateUrl: './map-component.html',
   styleUrls: ['./map-component.css']
 })
 export class MapComponent implements OnInit, AfterViewInit {
@@ -30,12 +30,12 @@ export class MapComponent implements OnInit, AfterViewInit {
   @Input() longitude: number = -3.703790;
   @Input() name: string = 'Ubicación';
   @Input() address: string = '';
-  
+
   @ViewChild('mapElement') mapElement!: ElementRef;
   private map!: L.Map;
   private marker!: L.Marker;
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngAfterViewInit(): void {
     this.initMap();
@@ -44,7 +44,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   private initMap(): void {
     // Crear el mapa
     this.map = L.map(this.mapElement.nativeElement).setView([this.latitude, this.longitude], 15);
-    
+
     // Añadir capa de OpenStreetMap
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
@@ -52,7 +52,14 @@ export class MapComponent implements OnInit, AfterViewInit {
       maxZoom: 19,
       minZoom: 3
     }).addTo(this.map);
-    
+    // Crear icono personalizado con Bootstrap Icons
+    const customIcon = L.divIcon({
+      html: '<i class="bi bi-pin-fill" style="font-size: 20px; color: #394557;"></i>',
+      className: 'custom-pin-icon', 
+      iconSize: [40, 40],
+      iconAnchor: [20, 40]
+    });
+
     // Añadir marcador
     const popupContent = `
       <div style="text-align: center;">
@@ -61,11 +68,12 @@ export class MapComponent implements OnInit, AfterViewInit {
         <small>📍 ${this.latitude.toFixed(4)}, ${this.longitude.toFixed(4)}</small>
       </div>
     `;
-    
-    this.marker = L.marker([this.latitude, this.longitude])
+
+    this.marker = L.marker([this.latitude, this.longitude], { icon: customIcon })
       .addTo(this.map)
       .bindPopup(popupContent)
       .openPopup();
+
   }
 
   // Método para actualizar la ubicación si cambia
@@ -78,7 +86,7 @@ export class MapComponent implements OnInit, AfterViewInit {
           <div style="text-align: center;">
             <strong>${name}</strong><br>
             ${address ? `<small>${address}</small><br>` : ''}
-            <small>📍 ${lat.toFixed(4)}, ${lng.toFixed(4)}</small>
+            <small> ${lat.toFixed(4)}, ${lng.toFixed(4)}</small>
           </div>
         `;
         this.marker.bindPopup(popupContent);

@@ -8,8 +8,20 @@
   padding: 3.5rem 0 2rem;
   margin-top: 4rem;
   box-shadow: 0 -4px 10px rgba(0,0,0,0.15);
+  text-align: left; /* Para centrar el H2 */
+  justify-content: center;
 }
 
+/* H2 ARRIBA */
+.footer-premium .main-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin-bottom: 2.5rem;
+  padding-left: 20px;
+}
+
+/* GRID */
 .footer-container {
   max-width: 1280px;
   margin: 0 auto;
@@ -18,20 +30,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 2.5rem;
-}
-
-/* BRAND */
-.footer-logo {
-  font-size: 1.7rem;
-  font-weight: 800;
-  letter-spacing: 3px;
-  margin-bottom: 0.8rem;
-}
-
-.footer-desc {
-  color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 360px;
+  text-align: left; /* Para que las columnas no queden centradas */
 }
 
 /* TITLES */

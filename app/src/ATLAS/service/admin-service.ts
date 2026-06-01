@@ -97,6 +97,10 @@ updateLodging(id: number, lodging: Partial<LodgingsType>): Observable<LodgingsTy
 
 
   deleteLodging(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/alojamientos/${id}`);
-  }
+  const token = localStorage.getItem('token');
+  return this.http.delete<void>(`${this.apiUrl}/alojamientos/${id}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+}
+
 }
