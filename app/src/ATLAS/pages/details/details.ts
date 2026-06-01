@@ -73,24 +73,24 @@ export class Details implements OnInit {
 
 
   loadLodging() {
-  this.lodgingService.getByIdFromApi(this.lodgingId).subscribe({
-    next: (data) => {
-      this.lodging = data;
-      this.opinionService.getByLodging(this.lodgingId);
-      this.loading.set(false);
-    },
-    error: () => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Alojamiento no encontrado',
-        text: 'El alojamiento que buscas no existe.',
-        confirmButtonColor: '#d33'
-      }).then(() => {
-        this.router.navigate(['/lodgings']);
-      });
-    }
-  });
-}
+    this.lodgingService.getByIdFromApi(this.lodgingId).subscribe({
+      next: (data) => {
+        this.lodging = data;
+        this.opinionService.getByLodging(this.lodgingId);
+        this.loading.set(false);
+      },
+      error: () => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Alojamiento no encontrado',
+          text: 'El alojamiento que buscas no existe.',
+          confirmButtonColor: '#d33'
+        }).then(() => {
+          this.router.navigate(['/lodgings']);
+        });
+      }
+    });
+  }
 
 
   calculateNights(): number {
@@ -174,56 +174,83 @@ export class Details implements OnInit {
             err.error ||
             'No se pudo validar la reserva.';
 
-
         Swal.fire({
           icon: 'error',
           title: 'No disponible',
-          text: apiMessage,
+          text: this.mapBookingError(apiMessage),
           confirmButtonColor: '#d33'
         });
+
+        if (apiMessage === "No estás autenticado o el token es inválido") {
+          this.router.navigateByUrl("/auth/login");
+        }
       }
+
     });
   }
+  private mapBookingError(message: string): string {
+
+    const normalized = message.toLowerCase();
+
+    if (normalized.includes('token') || normalized.includes('autenticado')) {
+      return 'Tu sesión ha expirado. Inicia sesión nuevamente.';
+    }
+
+    if (normalized.includes('no disponible') || normalized.includes('ocupado')) {
+      return 'Este alojamiento no está disponible para las fechas seleccionadas.';
+    }
+
+    if (normalized.includes('people') || normalized.includes('personas')) {
+      return 'La cantidad de personas supera el límite permitido.';
+    }
+
+    if (normalized.includes('fecha') || normalized.includes('date')) {
+      return 'Las fechas seleccionadas no son válidas.';
+    }
+
+    return 'No se pudo validar la reserva. Inténtalo de nuevo.';
+  }
+
 
   onEdit(lodging: LodgingsType) {
     this.router.navigateByUrl("/edit/lodging/" + lodging.id);
   }
 
- onDelete(lodging: LodgingsType) {
-  Swal.fire({
-    title: '¿Eliminar alojamiento?',
-    text: `Se eliminará "${lodging.name}". Esta acción no se puede deshacer.`,
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#d33',
-    cancelButtonColor: '#3085d6',
-    confirmButtonText: 'Sí, eliminar'
-  }).then((result) => {
-    if (result.isConfirmed) {
+  onDelete(lodging: LodgingsType) {
+    Swal.fire({
+      title: '¿Eliminar alojamiento?',
+      text: `Se eliminará "${lodging.name}". Esta acción no se puede deshacer.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
 
-      this.adminService.deleteLodging(lodging.id).subscribe({
-        next: () => {
-          Swal.fire({
-            icon: 'success',
-            title: 'Eliminado',
-            text: 'El alojamiento ha sido eliminado correctamente.'
-          });
+        this.adminService.deleteLodging(lodging.id).subscribe({
+          next: () => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Eliminado',
+              text: 'El alojamiento ha sido eliminado correctamente.'
+            });
 
-          // 🔥 Recargar lista o redirigir
-          this.router.navigate(['/lodgings']);
-        },
-        error: () => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'No se pudo eliminar el alojamiento.'
-          });
-        }
-      });
+            // 🔥 Recargar lista o redirigir
+            this.router.navigate(['/lodgings']);
+          },
+          error: () => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'No se pudo eliminar el alojamiento.'
+            });
+          }
+        });
 
-    }
-  });
-}
+      }
+    });
+  }
 
   private formatDate(date: any): string {
     return new Date(date).toISOString().split('T')[0];

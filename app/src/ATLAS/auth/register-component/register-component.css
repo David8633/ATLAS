@@ -105,15 +105,20 @@ p a:hover {
 .input-group-custom small,
 .text-error {
     position: absolute;
-    bottom: -20px;
     left: 5px;
+    bottom: -32px; /* más espacio para 2 líneas */
+    width: calc(100% - 10px);
     font-size: 0.8rem;
     color: #ff4d4d;
     font-weight: 500;
+    line-height: 1.2;
+    white-space: normal;      /* permite varias líneas */
+    word-break: break-word;   /* evita que se salga */
     opacity: 0;
     transform: translateY(5px);
     transition: 0.2s ease;
 }
+
 
 /* Mostrar error */
 .input-group-custom.invalid small,

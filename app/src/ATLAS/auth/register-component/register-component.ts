@@ -18,7 +18,7 @@ export class RegisterComponent {
 
   fb: FormBuilder = new FormBuilder();
   myForm: FormGroup = this.fb.group({
-    name: ['', [Validators.required,Validators.minLength(5)]],
+    name: ['', [Validators.required, Validators.minLength(5)]],
     lastname: ['', [Validators.required]],
     username: ["", [Validators.required, Validators.minLength(5)]],
     email: ["", [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
@@ -35,29 +35,54 @@ export class RegisterComponent {
     if (!this.myForm.controls[field]) return null;
     const errors = this.myForm.controls[field].errors || {};
 
-    for (const element of Object.keys(errors)) {
-      switch (element) {
+    // Mensajes personalizados por campo
+    const customMessages: any = {
+      email: {
+        pattern: 'Introduce un correo válido (ejemplo: usuario@correo.com).'
+      },
+      password: {
+        pattern: 'La contraseña debe tener al menos 6 caracteres, incluir letras y números.'
+      },
+      retryPassword: {
+        pattern: 'La confirmación debe cumplir el mismo formato que la contraseña.'
+      },
+      username: {
+        minlength: 'El usuario debe tener al menos 5 caracteres.'
+      },
+      name: {
+        minlength: 'El nombre debe tener al menos 5 caracteres.'
+      }
+    };
+
+    for (const errorKey of Object.keys(errors)) {
+      switch (errorKey) {
         case 'required':
           return 'Este campo es obligatorio';
-        case 'pattern':
-          return `El campo ${field} no tiene el formato correcto de letras y numeros por ejemplo XXXXXXX123.`;
+
         case 'minlength':
-          return `Este campo debe tener al menos ${errors['minlength'].requiredLength} caracteres`;
+          return customMessages[field]?.minlength ||
+            `Debe tener al menos ${errors['minlength'].requiredLength} caracteres`;
+
+        case 'pattern':
+          return customMessages[field]?.pattern ||
+            `El formato del campo ${field} no es válido.`;
       }
     }
+
     return null;
   }
 
-  private trimFormValues() {
-  const rawValues = this.myForm.value;
 
-  Object.keys(rawValues).forEach(key => {
-    const value = rawValues[key];
-    if (typeof value === 'string') {
-      this.myForm.get(key)?.setValue(value.trim());
-    }
-  });
-}
+  private trimFormValues() {
+    const rawValues = this.myForm.value;
+
+    Object.keys(rawValues).forEach(key => {
+      const value = rawValues[key];
+      if (typeof value === 'string') {
+        this.myForm.get(key)?.setValue(value.trim());
+      }
+    });
+  }
 
   register() {
     this.trimFormValues();
