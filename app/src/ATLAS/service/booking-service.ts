@@ -67,12 +67,34 @@ export class BookingService {
   payBooking(data: {
     lodgingId: number;
     checkinDate: string;
+    people: number;
     checkoutDate: string;
     paymentMethod: string;
   }) {
     console.log(data);
     return this.http.post(`${this.apiUrl}`, data);
   }
+
+
+  validateBooking(data: {
+    lodgingId: number;
+    checkinDate: string;
+    people: number;
+    checkoutDate: string;
+  }) {
+    const token = localStorage.getItem('token');
+
+    return this.http.post(
+      `${this.apiUrl}/validar`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+  }
+
 
 
 }

@@ -16,6 +16,7 @@
             <h2 class="place-title">
               {{ lodging.name }}
             </h2>
+
             @if (authService.canEditOrDelete()) {
               <div class="edit-actions">
                 <button class="action-btn edit" (click)="onEdit(lodging)">
@@ -29,6 +30,7 @@
                 </button>
               </div>
             }
+
             <div class="place-meta">
               <span class="badge">
                 {{ lodging.type }}
@@ -40,8 +42,7 @@
                     class="bi"
                     [class.bi-star-fill]="star <= lodging.rating"
                     [class.bi-star]="star > lodging.rating"
-                  >
-                  </i>
+                  ></i>
                 }
               </div>
             </div>
@@ -52,10 +53,7 @@
           <!-- DESCRIPCIÓN -->
           <section class="description-section">
             <h3>Descripción</h3>
-
-            <p>
-              {{ lodging.description }}
-            </p>
+            <p>{{ lodging.description }}</p>
           </section>
 
           <!-- INFO -->
@@ -83,8 +81,16 @@
             </div>
           </section>
 
-          <!-- FECHAS -->
+          <!-- RESERVA -->
           <div class="reserve-block">
+            @if (checkin && checkout) {
+              <p class="price-preview">
+                Total estimado:
+                <strong>{{ totalPrice }} €</strong>
+                ({{ nights }} noche{{ nights > 1 ? 's' : '' }})
+              </p>
+            }
+
             <div class="date-row">
               <div class="date-field">
                 <label for="checkin"> Check-in </label>
@@ -93,6 +99,7 @@
                   id="checkin"
                   type="date"
                   [(ngModel)]="checkin"
+                  (ngModelChange)="updatePreviewPrice()"
                   class="date-input"
                   [min]="minDate"
                   [max]="checkout || null"
@@ -106,6 +113,7 @@
                   id="checkout"
                   type="date"
                   [(ngModel)]="checkout"
+                  (ngModelChange)="updatePreviewPrice()"
                   class="date-input"
                   [min]="checkin || minDate"
                 />
@@ -120,6 +128,7 @@
                 type="number"
                 class="date-input"
                 [(ngModel)]="people"
+                (ngModelChange)="updatePreviewPrice()"
                 min="1"
                 max="10"
               />
@@ -134,7 +143,7 @@
 
       <!-- DERECHA -->
       <aside class="sidebar-content">
-        <app-opinions-section [lodgingId]="lodgingId"> </app-opinions-section>
+        <app-opinions-section [lodgingId]="lodgingId"></app-opinions-section>
 
         <div class="map-card">
           <h3>
@@ -147,8 +156,7 @@
             [longitude]="lodging.longitude || -3.70379"
             [name]="lodging.name"
             [address]="lodging.address"
-          >
-          </app-map>
+          ></app-map>
         </div>
       </aside>
     </div>
@@ -157,7 +165,6 @@
   @if (loading()) {
     <div class="loading-container">
       <div class="spinner"></div>
-
       <p>Cargando alojamiento...</p>
     </div>
   }

@@ -1,14 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { BookingService } from '../../service/booking-service';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { BookingStore } from '../../service/booking-store';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-pay-booking',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './pay-booking.html',
   styleUrls: ['./pay-booking.css']
 })
@@ -25,9 +26,12 @@ export class PayBooking implements OnInit {
 
   paymentMethod: string = '';
 
+  people: number = 1;
+
   private router = inject(Router);
   private bookingService = inject(BookingService);
   private bookingStore = inject(BookingStore);
+  private location = inject(Location);
 
   ngOnInit() {
     if (!this.bookingStore.validateOrAlert()) {
@@ -41,6 +45,7 @@ export class PayBooking implements OnInit {
     this.checkout = this.bookingStore.checkout()!;
     this.nights = this.bookingStore.nights()!;
     this.totalPrice = this.bookingStore.totalPrice()!;
+    this.people = this.bookingStore.people();
   }
 
   payBooking() {
@@ -58,11 +63,36 @@ export class PayBooking implements OnInit {
       lodgingId: this.lodgingId,
       checkinDate: this.formatDate(this.checkin),
       checkoutDate: this.formatDate(this.checkout),
+      people: this.people,
       paymentMethod: this.paymentMethod
     };
 
-    console.log(payload);
+    console.log("Payload enviado:", payload);
 
+    // 1️⃣ VALIDAR ANTES DE PAGAR
+    this.bookingService.validateBooking(payload).subscribe({
+      next: () => {
+        // 2️⃣ SI TODO OK → PAGAR
+        this.confirmPayment(payload);
+      },
+      error: (err) => {
+        const apiMessage =
+          err.error?.messages ||
+          err.error?.error ||
+          err.error ||
+          'No se pudo validar la reserva.';
+
+        Swal.fire({
+          icon: 'error',
+          title: 'No disponible',
+          text: apiMessage,
+          confirmButtonColor: '#d33'
+        });
+      }
+    });
+  }
+
+  private confirmPayment(payload: any) {
     this.bookingService.payBooking(payload).subscribe({
       next: () => {
         Swal.fire({
@@ -74,6 +104,17 @@ export class PayBooking implements OnInit {
           this.bookingStore.clear();
           this.router.navigate(['/books']);
         });
+
+        this.bookingStore.setBooking({
+          checkin: '',
+          checkout: '',
+          nights: 0,
+          totalPrice: 0,
+          lodgingId: 0,
+          lodgingName: '',
+          people: 0
+        });
+
       },
       error: (err) => {
         const apiMessage =
@@ -89,7 +130,6 @@ export class PayBooking implements OnInit {
           confirmButtonColor: '#d33'
         });
       }
-
     });
   }
 
@@ -98,4 +138,20 @@ export class PayBooking implements OnInit {
     return new Date(date).toISOString().split('T')[0];
   }
 
+  back() {
+    this.bookingStore.setBooking({
+      checkin: this.checkin,
+      checkout: this.checkout,
+      nights: this.nights,
+      totalPrice: this.totalPrice,
+      lodgingId: this.lodgingId,
+      lodgingName: this.lodgingName,
+      people: this.people
+    });
+
+    this.location.back();
+  }
+
+
 }
+

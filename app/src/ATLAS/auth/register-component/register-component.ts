@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, MinLengthValidator, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../service/auth-service';
 import Swal from 'sweetalert2';
 
@@ -18,7 +18,7 @@ export class RegisterComponent {
 
   fb: FormBuilder = new FormBuilder();
   myForm: FormGroup = this.fb.group({
-    name: ['', [Validators.required]],
+    name: ['', [Validators.required,Validators.minLength(5)]],
     lastname: ['', [Validators.required]],
     username: ["", [Validators.required, Validators.minLength(5)]],
     email: ["", [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
@@ -40,7 +40,7 @@ export class RegisterComponent {
         case 'required':
           return 'Este campo es obligatorio';
         case 'pattern':
-          return `El campo ${field} no tiene el formato correcto.`;
+          return `El campo ${field} no tiene el formato correcto de letras y numeros por ejemplo XXXXXXX123.`;
         case 'minlength':
           return `Este campo debe tener al menos ${errors['minlength'].requiredLength} caracteres`;
       }

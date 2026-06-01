@@ -3,10 +3,10 @@
             <a routerLink="/dashboard" ><div class="logo" tabindex="0" aria-label="ATLAS - Inicio">ATLAS</div></a>
             <nav aria-label="Menú principal">
                 <ul class="nav-links">
-                    <li><a routerLink="/lodgings" routerLinkActive="active">Lodgings</a></li>
-                    <li><a routerLink="/destinations" routerLinkActive="active">Destinations</a></li>
+                    <li><a routerLink="/lodgings" routerLinkActive="active">Alojamientos</a></li>
+                    <li><a routerLink="/destinations" routerLinkActive="active">Destinos</a></li>
                     @if(token){
-                        <li><a routerLink="/books" routerLinkActive="active">Bookings</a></li>
+                        <li><a routerLink="/books" routerLinkActive="active">Reservas</a></li>
                     }
                 </ul>
             </nav>
@@ -16,8 +16,8 @@
                         {{getUserInitial()}}
                     </a>    
                 }@else {
-                    <a routerLink="/auth/login" class="btn-auth btn-login" aria-label="Log in - Iniciar sesión">LOGIN</a>
-                    <a routerLink="/auth/register" class="btn-auth btn-register" aria-label="Register - Registrarse">REGISTER</a>
+                    <a routerLink="/auth/login" class="btn-auth btn-login" aria-label="Log in - Iniciar sesión">Iniciar Sesion</a>
+                    <a routerLink="/auth/register" class="btn-auth btn-register" aria-label="Register - Registrarse">Registrarse</a>
                 }   
             </div>
         </div>

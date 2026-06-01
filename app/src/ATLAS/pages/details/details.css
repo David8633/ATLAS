@@ -61,7 +61,6 @@
   margin-bottom: 1rem;
 }
 
-/* Título + botones alineados */
 .header-row {
   display: flex;
   justify-content: space-between;
@@ -100,12 +99,10 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* Azul permanente */
 .action-btn.edit {
   background: #2b4c7e;
 }
 
-/* Rojo permanente */
 .action-btn.delete {
   background: #d9534f;
 }
@@ -127,11 +124,7 @@
 }
 
 .badge {
-  background: linear-gradient(
-    135deg,
-    #142343,
-    #1d4ed8
-  );
+  background: linear-gradient(135deg, #142343, #1d4ed8);
   color: white;
   padding: 8px 14px;
   border-radius: 999px;
@@ -204,8 +197,7 @@
 
 .info-item:hover {
   transform: translateY(-2px);
-  box-shadow:
-    0 8px 18px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
 }
 
 .info-item i {
@@ -273,8 +265,44 @@
 .date-input:focus {
   outline: none;
   border-color: #1d4ed8;
-  box-shadow:
-    0 0 0 4px rgba(29, 78, 216, 0.12);
+  box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.12);
+}
+
+/* =========================
+   CANTIDAD DE PERSONAS
+========================= */
+
+.people-block {
+  margin-bottom: 22px; /* ⭐ SEPARACIÓN DEL BOTÓN */
+  display: flex;
+  flex-direction: column;
+}
+
+.people-block label {
+  margin-bottom: 8px;
+  color: #334155;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.people-block input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid #dbe4f0;
+  background: white;
+  font-size: 0.95rem;
+  transition: 0.25s;
+}
+
+.people-block input:hover {
+  border-color: #1d4ed8;
+}
+
+.people-block input:focus {
+  outline: none;
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.12);
 }
 
 /* =========================
@@ -290,11 +318,7 @@
   width: 100%;
   max-width: 340px;
   border: none;
-  background: linear-gradient(
-    135deg,
-    #142343,
-    #1d4ed8
-  );
+  background: linear-gradient(135deg, #142343, #1d4ed8);
   color: white;
   padding: 15px 22px;
   border-radius: 16px;
@@ -302,14 +326,12 @@
   font-weight: 700;
   cursor: pointer;
   transition: 0.25s;
-  box-shadow:
-    0 12px 24px rgba(29, 78, 216, 0.2);
+  box-shadow: 0 12px 24px rgba(29, 78, 216, 0.2);
 }
 
 .reserve-btn:hover {
   transform: translateY(-2px);
-  box-shadow:
-    0 18px 30px rgba(29, 78, 216, 0.28);
+  box-shadow: 0 18px 30px rgba(29, 78, 216, 0.28);
 }
 
 /* =========================
@@ -331,8 +353,7 @@
   border-radius: 22px;
   padding: 22px;
   border: 1px solid #e9edf5;
-  box-shadow:
-    0 10px 30px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
 }
 
 .map-card h3 {
@@ -444,3 +465,14 @@
     max-width: 100%;
   }
 }
+.price-preview {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  background: #f5f7ff;
+  border-left: 4px solid #007bff;
+  border-radius: 6px;
+  color: #333;
+}
+

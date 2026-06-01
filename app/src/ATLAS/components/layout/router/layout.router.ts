@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { Layout } from '../layout';
 import { AuthGuard } from '../../../guard/auth-guard';
 import { EditFormComponent } from '../../edit-form/edit-form';
+import { AboutUs } from '../../../pages/about-us/about-us';
 
 export const ROUTES_LAYOUT: Routes = [
   {
@@ -28,23 +29,27 @@ export const ROUTES_LAYOUT: Routes = [
       { path: 'destinations', loadComponent: () => import('../../../pages/destinations/destinations').then(t => t.Destinations) },
       { path: 'books', loadComponent: () => import('../../../pages/booking/booking').then(t => t.Booking) },
 
-      { 
-        path: 'account', 
-        canActivate: [AuthGuard], 
-        loadComponent: () => import('../../../pages/account/account').then(t => t.Account) 
+      {
+        path: 'account',
+        canActivate: [AuthGuard],
+        loadComponent: () => import('../../../pages/account/account').then(t => t.Account)
       },
-      { 
-        path: 'details/:id',  
-        loadComponent: () => import('../../../pages/details/details').then(t => t.Details) 
-      } ,{
+      {
+        path: 'details/:id',
+        loadComponent: () => import('../../../pages/details/details').then(t => t.Details)
+      }, {
         path: 'payBooking',
-        canActivate: [AuthGuard], 
+        canActivate: [AuthGuard],
         loadComponent: () =>
           import('../../../pages/pay-booking/pay-booking').then(t => t.PayBooking)
-      },{
+      }, {
         path: 'edit/:type/:id',
         canActivate: [AuthGuard],
         loadComponent: () => EditFormComponent
+      }, {
+        path: 'aboutUs',
+        loadComponent: () => import('../../../pages/about-us/about-us').then(t => t.AboutUs)
+
       }
     ]
   }
